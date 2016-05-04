@@ -1,0 +1,8 @@
+  <div class="wrapper" ng-controller="formLogin">
+    <form  class="form-signin" ng-submit="login(credentials)">       
+      <h2 class="form-signin-heading">Please login</h2>
+      <input type="text" class="form-control" name="username" placeholder="Company Domain" ng-model="credentials.username" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Password" ng-model="credentials.password" required=""/>      
+      <input role="button" class="btn btn-lg btn-primary btn-block" type="submit" id="submit" value="Submit"/>
+    </form>
+  </div>

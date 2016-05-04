@@ -1,0 +1,26 @@
+{
+  "name": "veoptimazer",
+  "version": "1.0.1",
+  "description": "jason package",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "^1.5.5",
+    "angular-bootstrap-colorpicker": "^3.0.25",
+    "bootstrap": "^3.3.6"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "123456"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
