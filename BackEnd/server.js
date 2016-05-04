@@ -9,17 +9,21 @@ var controllers = require('./modules/users/controllers/controllers');
 
 
 
+
 var app = express();
 
+//Using all these below folders as static, Angular will take over for front end
 app.use(express.static(path.join(__dirname, '..') + '/FrontEnd/bower_components/'));
 app.use(express.static(path.join(__dirname, '..') + '/FrontEnd/node_modules/'));
-app.use(express.static(path.join(__dirname, '..') + '/FrontEnd/public/'));
+app.use(express.static(path.join(__dirname, '..') + '/FrontEnd/deploy/'));
 app.use(express.static(path.join(__dirname, '..') + '/FrontEnd/modules/'));
 
 
 
+//Middleware will use all the routes with header /api
 app.use('/api',controllers.listFunctions);
 
+//Loading the index Page when run the server
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..') + '/FrontEnd/index.html'));
 
 
