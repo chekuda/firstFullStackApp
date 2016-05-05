@@ -7,9 +7,9 @@
 
 
 
-    /**
+    /************
     *Navigator bar
-    **/
+    *************/
 
     app.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider) {
       $routeProvider
@@ -24,38 +24,29 @@
 
 
 
-
+    /**************
+      Login function
+    **************/
     app.controller('formLogin',function($scope,$http) {
-      $scope.credentials = {
+      $scope.credentials = {//Using the model credentials from the form
         username:"",
         password:""
       };
-      //When the page is loaded, get from the API todos from TODOS
-      // $scope.login = function(credentials){
-      //   $http.get('/api/show')
-      //   .success(function(data){
-      //     angular.forEach(data, function(value,key)
-      //     {
-      //       if(data[key].username == $scope.credentials.username && data[key].password == $scope.credentials.password)
-      //       {
-      //         console.log("success");
-      //       }
-      //     });
-      //   })
-      //   .error(function(data){
-      //     console.log('Error: '+ data);
-      //   });
-      // };
 
+      //Function called from the form, credential Object will be passed
       $scope.loginP = function(credentials){
-        $http.post('/api/login',$scope.credentials)
+        $http.post('/api/login',$scope.credentials)//Calling the API fir the right login data
         .success(function(data){
-          if(data == "success")
-          {
-            window.location.href="/";
+          if(data.success)
+          {//if client exist I will add the token to the sessionStorage
+            console.log(data.token);
+            window.sessionStorage.token = data.token;
+            //Redirect the client to the home page
+            location.pathname="/";
           }
-          else{
+          else{//if the anything is wrong in the login details I will display an alert
             console.log(data);
+            alert(data.msg);
           }
         })
         .error(function(data){
@@ -91,9 +82,11 @@
       // };
     });
 
-    /**
+
+
+    /*********************
       *NavBar active configuration
-    **/
+    *********************/
     app.controller('navCntr',function($scope,$location){
       $scope.isActive = function(viewLocation){
         var active = (viewLocation === $location.path());
@@ -101,7 +94,45 @@
       }
     });
 
-     app.controller('driversController',function(){
+
+
+    /***************
+      Token Check function
+    ***************/
+
+    //Everytime the client navigate trough the webApp, this will check if the token exist
+     app.controller('driversController',function($scope,$location,$http){
+      //Check if Im in the login page
+       if(location.pathname=="/login")
+       {
+        console.log("login");
+       }
+       //If not this will check if the token is on the sessionStorage
+       else{
+          if(window.sessionStorage.getItem("token"))
+           {
+            //If the token is in the sessionStorage this will create the var token
+             $scope.token = {
+                      token:""
+                    };
+            //This will give value to the token from sessionStore
+             $scope.token.token = window.sessionStorage.getItem("token");
+            //Calling to the server to check it the token is right
+             $http.post('/api/auth',$scope.token)
+             .success(function(data){
+                console.log(data);
+             })
+             .error(function(data)
+             {
+              //If the token is wrong this will redirect to the server
+              location.pathname="/login";
+             });
+           }
+           else{// if the token doesnt exist it will be redirected to login page
+            location.pathname="/login";
+           }
+       }
+       
      });
 
 
