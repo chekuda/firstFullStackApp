@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var path = require('path');
+var createToken = require("../services/createToken");
 
 exports.login = function(req,res){
 	//Conection with the DB
@@ -29,15 +30,17 @@ exports.login = function(req,res){
 		  	//If userName is right, checking the password
 		  	if(rows[0].password == req.body.password)
 		  	{
-		  		res.send("success");
+		  		var token = createToken.tokenCreated(req.body.username);//saving the new token for this user on var token
+		  		res.json({success:true,token: token});
 		  	}
 		  	else{
-		  		res.send("Wrong Password");
+		  		//Password falied
+		  		res.json({success:false,msg:"Wrong password"});
 		  	}
 		  }
 		  else
-		  {
-		  	res.send("User doesn't exist");
+		  {//Client doesnt exist
+		  	res.json({success:false,msg:"Client doesnt exist"});
 		  }
 
 		});
