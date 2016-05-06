@@ -71,7 +71,7 @@ body{
 		font-size: 30px;
 }
 
-/*****************/
+/********End contactUs*********/
 
 /****
 	Login template
@@ -140,3 +140,23 @@ body{
 /******End textAgular editor*****/
 
 
+
+/*****************
+	Upload Images Page
+	****************/
+
+.formButtons
+{
+	text-align: center;
+}
+.jumboImages{
+	text-align: center;
+}
+
+
+.uploadImagesForm{
+	width: 50%;
+    margin: 0 auto;
+}
+
+/******End Upload Images Pager*****/
