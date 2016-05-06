@@ -12,4 +12,5 @@
 	- CSS
 	- JS
 	- Angular
+		-UIRouter for router(depending of the state of the page it will do an action)
 	- Bootstrap

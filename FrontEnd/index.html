@@ -20,10 +20,12 @@
 
   <body>
     <div ng-include='"mainPage/views/header.html"'></div>
-    <div ng-view></div>
+    <div ui-view></div>
 
     <!-- Vendor: Angular, followed by our custom Javascripts -->
     <script src="angular/angular.min.js"></script>
+    <!-- Vendor: Angular-UI-Router-->
+    <script src="angular-ui-router/release/angular-ui-router.min.js"></script>
     <!--Vendor: Jquery-->
     <script  src="https://code.jquery.com/jquery-1.12.3.js"   integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc="   crossorigin="anonymous"></script>
     <!--Bower Lodash-->

@@ -1,32 +1,85 @@
-
-    /**
+   /**
       *Body
     **/
 
-    var app = angular.module('veoptimazer', ['colorpicker.module','ngImageInputWithPreview','textAngular','ngRoute','ngAnimate']);//'ui.bootstrap'
+    var app = angular.module('veoptimazer', ['colorpicker.module','ngImageInputWithPreview','ui.router','textAngular','ngRoute','ngAnimate']);//'ui.bootstrap'
 
+
+    //Runing this controller before the page is loaded. Dependencies=>@Token and @needAuth
+    app.run(['$rootScope', '$state','$location','$window','$http', function ($rootScope, $state, $location, $window, $http) {
+            $rootScope.$on('$stateChangeStart', function (event, toState) {
+                var auth = toState.needAuth;
+                if(auth)//if the client need authentication
+                {
+                  if(window.sessionStorage.getItem("token"))
+                   {
+                    //This will give value to the token from sessionStore
+                     var token = {token: window.sessionStorage.getItem("token")};
+                    //Calling to the server to check it the token is right
+                     $http.post('/api/auth',token)
+                     .success(function(data){
+                        console.log(data);//client athenticated
+                        if($location.path == "/login")//if the client is authenticated and he/she request login page, this redirect to home page
+                        {
+                          $location.path = "/home";
+                        }
+                     })
+                     .error(function(data)
+                     {
+                      //If the token is wrong this will redirect to the server
+                      location.pathname="/";
+                     });
+                   }
+                }
+                
+            });
+        }]);
 
 
     /************
-    *Navigator bar
+    *Navigator bar managed with UIRouter
     *************/
 
-    app.config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider) {
-      $routeProvider
-      .when("/",{templateUrl: "/mainpage/views/home.html",controller:"driversController"})
-      .when("/veprompt",{templateUrl: "/vepromptpage/views/veprompt.html",controller:"driversController"})
-      .when("/contactus",{templateUrl: "/contactuspage/views/contactus.html",controller:"driversController"})
-      .when("/basket",{templateUrl: "/basketpage/views/basket.html",controller:"driversController"})
-      .when("/login",{templateUrl: "/loginpage/views/login.html",controller:"driversController"});
-      //used for remove the '#' within the URL
-      $locationProvider.html5Mode(true);
-    }]);
+
+    app.config(function($stateProvider, $urlRouterProvider,$locationProvider)//Router
+    {
+      $urlRouterProvider.otherwise("/home");
+
+      $stateProvider
+        .state('login',{
+          url:"/",
+          templateUrl:"/loginpage/views/login.html",
+          needAuth: false
+        })
+        .state('veprompt',{
+          url:"/veprompt",
+          templateUrl:"/vepromptpage/views/veprompt.html",
+          needAuth: true
+        })
+        .state('basket',{
+          url:"/basket",
+          templateUrl:"/basketpage/views/basket.html",
+          needAuth: true
+        })
+        .state('contactus',{
+          url:"/contactus",
+          templateUrl:"/contactuspage/views/contactus.html",
+          needAuth: true
+        })
+        .state('home',{
+          url:"/home",
+          templateUrl:"/mainpage/views/home.html",
+          needAuth: true
+        });
+        $locationProvider.html5Mode(true);//removing the hash
+    });
 
 
 
     /**************
       Login function
     **************/
+
     app.controller('formLogin',function($scope,$http) {
       $scope.credentials = {//Using the model credentials from the form
         username:"",
@@ -42,7 +95,7 @@
             console.log(data.token);
             window.sessionStorage.token = data.token;
             //Redirect the client to the home page
-            location.pathname="/";
+            location.pathname="/home";
           }
           else{//if the anything is wrong in the login details I will display an alert
             console.log(data);
@@ -96,44 +149,8 @@
 
 
 
-    /***************
-      Token Check function
-    ***************/
 
-    //Everytime the client navigate trough the webApp, this will check if the token exist
-     app.controller('driversController',function($scope,$location,$http){
-      //Check if Im in the login page
-       if(location.pathname=="/login")
-       {
-        console.log("login");
-       }
-       //If not this will check if the token is on the sessionStorage
-       else{
-          if(window.sessionStorage.getItem("token"))
-           {
-            //If the token is in the sessionStorage this will create the var token
-             $scope.token = {
-                      token:""
-                    };
-            //This will give value to the token from sessionStore
-             $scope.token.token = window.sessionStorage.getItem("token");
-            //Calling to the server to check it the token is right
-             $http.post('/api/auth',$scope.token)
-             .success(function(data){
-                console.log(data);
-             })
-             .error(function(data)
-             {
-              //If the token is wrong this will redirect to the server
-              location.pathname="/login";
-             });
-           }
-           else{// if the token doesnt exist it will be redirected to login page
-            location.pathname="/login";
-           }
-       }
-       
-     });
+
 
 
       // app.controller("formLogin",function($scope,$http)
@@ -197,6 +214,12 @@
 
       $scope.savingFinalTemplate = function(){
 
+        // $scope.confiSettings = {
+        //   mainBanner = "",
+        //   maintext = "",
+        //   ctaImage = "",
+        //   closeButton = ""
+        // };
         $scope.mainBanner = document.getElementById('mainBannerSelected').innerHTML;
         $scope.maintext = document.getElementById('textSelected').innerHTML;
         $scope.ctaImage = document.getElementById('ctaImageSelected').innerHTML;
