@@ -5,12 +5,17 @@
     var app = angular.module('veoptimazer', ['colorpicker.module','ngImageInputWithPreview','ui.router','textAngular','ngRoute','ngAnimate']);//'ui.bootstrap'
 
 
+    /***************
+      Pre-load page, checking the token
+    ***************/
+
     //Runing this controller before the page is loaded. Dependencies=>@Token and @needAuth
     app.run(['$rootScope', '$state','$location','$window','$http', function ($rootScope, $state, $location, $window, $http) {
             $rootScope.$on('$stateChangeStart', function (event, toState) {
                 var auth = toState.needAuth;
                 if(auth)//if the client need authentication
                 {
+                    
                   if(window.sessionStorage.getItem("token"))
                    {
                     //This will give value to the token from sessionStore
@@ -30,7 +35,11 @@
                       location.pathname="/";
                      });
                    }
+                   else{
+                    location.pathname="/";
+                    }
                 }
+
                 
             });
         }]);
@@ -70,6 +79,11 @@
           url:"/home",
           templateUrl:"/mainpage/views/home.html",
           needAuth: true
+        })
+        .state('uimages',{
+          url:"/uimages",
+          templateUrl:"/uploadimages/views/uimages.html",
+          needAuth: false
         });
         $locationProvider.html5Mode(true);//removing the hash
     });
@@ -94,8 +108,14 @@
           {//if client exist I will add the token to the sessionStorage
             console.log(data.token);
             window.sessionStorage.token = data.token;
-            //Redirect the client to the home page
-            location.pathname="/home";
+            if(data.admin)
+            {
+              location.pathname="/uimages";//if the client is master
+            }
+            else{
+              //Redirect the client to the home page
+              location.pathname="/home";//if the client is user
+            }
           }
           else{//if the anything is wrong in the login details I will display an alert
             console.log(data);
