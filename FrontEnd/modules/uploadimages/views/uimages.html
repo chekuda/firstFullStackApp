@@ -1,0 +1,50 @@
+<div class="jumbotron jumboImages">
+<h1>Upload the images here!!</h1>
+<p>Please make sure that all the fields are correct before upload the image</p>
+</div>
+<div class="uploadImagesForm">
+<form class="form-group">
+	<div class="form-group">
+		<label>App</label>
+		<select class="form-control" id="app">
+		    <option value="veContact">veContact</option>
+		    <option value="vePrompt">vePrompt</option>
+	  	</select>
+  	</div>
+  	<div class="form-group">
+	  	<label>Template</label>
+		<select class="form-control" id="template">
+		    <option value="1">1</option>
+		    <option value="2">2</option>
+		    <option value="3">3</option>
+		    <option value="2">4</option>
+	  	</select>
+	 </div>
+	 <div class="form-group">
+	  	<label>Sector</label>
+		<select class="form-control" id="sector">
+		    <option value="sport">sport</option>
+		    <option value="hotel">hotel</option>
+		    <option value="electronic">electronic</option>
+		    <option value="finances">finances</option>
+		    <option value="generic">generic</option>
+	  	</select>
+	 </div>
+	<div class="form-group">
+	  	<label>Type Image</label>
+		<select class="form-control" id="timage">
+		    <option value="cta">CTA</option>
+		    <option value="background">background</option>
+		    <option value="close">close</option>
+	  	</select>
+  	</div>
+  	<div class="form-group">
+	  	<label>Source</label>
+	  	<input type="text" class="form-control">
+	</div>
+	<div class="formButtons">
+		<input role="button" class="btn btn-primary" value="Check values" ng-click="checkImages()"/>
+		<input role="button" class="btn btn-primary" value="Insert Image" ng-click="insertImage()"/>
+	</div>
+</form>
+</div>
