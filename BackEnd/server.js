@@ -5,7 +5,8 @@
 var express = require('express');
 var path = require('path');
 var routes = require('./modules/users/routes/routes');
-var controllers = require('./modules/users/controllers/controllers');
+var ctrUsers = require('./modules/users/controllers/controllers');
+var ctrimages = require('./modules/imagesHandler/controllers/controllers');
 
 
 
@@ -20,8 +21,11 @@ app.use(express.static(path.join(__dirname, '..') + '/FrontEnd/modules/'));
 
 
 
-//Middleware will use all the routes with header /api
-app.use('/api',controllers.listFunctions);
+//Middlewares
+app.use('/api',ctrUsers.listFunctions);
+app.use('/api',ctrimages.listFunctionImg);
+
+
 
 //Loading the index Page when run the server
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..') + '/FrontEnd/index.html'));
@@ -30,5 +34,4 @@ app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..') + '/FrontEnd/
 app.listen(3000,function(){
 	console.log('App listening on port 3000');
 });
-
 
