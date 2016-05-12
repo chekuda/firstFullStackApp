@@ -17,32 +17,35 @@ angular.module('vecontactCtr',[])
       *********************/
       $scope.resultObject = [];
       $scope.defaulvalues ={
-        defaulText:"",
-        bkColour:"",
-        ctaText:"",
-        ctaColour:"",
-        contactTemplate:"",
-        contactLogo:"",
-        contactTheme:"",
-        contactCTA:""
+        defaulText:"",//For configuration settings
+        bkColour:"",//for CTA configuration settings
+        ctaText:"",//For CTA configuration settings
+        ctaColour:"",//For CTA configuration settins
+        contactTemplate:"",//HTML template
+        contactLogo:"",//Default logo
+        contactTheme:"",//Main banners 
+        // contactCTA:"",//for the CTA of vecontact
+        contactBGcolour:""//for the whole template
       };
       $http.get('const/defaultValues.json')
       .success(function(res){
 
-      /**
-        @resultObject
-        //Default values from Json file
-      **/
-         $scope.resultObject.push(res);
-         $scope.defaulvalues.defaulText = $scope.resultObject[0].vecontactview[0].configurationSettings[0].copyText;
+         $scope.resultObject.push(res);//Getting the data from the defaultJSONFile
+         $scope.defaulvalues.contactTemplate = $scope.resultObject[0].vecontactview[1].templates[1].htmlCode;//templateHTML
+         $scope.defaulvalues.contactLogo = $scope.resultObject[0].vecontactview[1].templates[2].contactLogo;//DefaultLogo
+         $scope.defaulvalues.contactTheme = $scope.resultObject[0].vecontactview[1].templates[3].contactTheme;//theme
+
+         // document.getElementById("previewBoxContact").innerHTML += $scope.defaulvalues.contactTemplate;
+   
+         $scope.defaulvalues.defaulText = $scope.resultObject[0].vecontactview[0].configurationSettings[0].copyText;//Main copy
          $scope.defaulvalues.bkColour = $scope.resultObject[0].vecontactview[0].configurationSettings[1].bkcolour;
          $scope.defaulvalues.ctaText = $scope.resultObject[0].vecontactview[0].configurationSettings[2].ctaText;
          $scope.defaulvalues.ctaColour = $scope.resultObject[0].vecontactview[0].configurationSettings[3].ctaColour;
+         $scope.defaulvalues.contactBGcolour = $scope.resultObject[0].vecontactview[0].configurationSettings[4].contactBGcolour;//I want to use this for the 
 
-         //template
-         $scope.defaulvalues.contactTemplate = $scope.resultObject[0].vecontactview[1].templates[1].htmlCode;
-         document.getElementById("previewBoxContact").innerHTML += $scope.defaulvalues.contactTemplate;
+         
 
+         
       }).error(function(data){
         console.log("Error>>>>>> "+data);
       });
@@ -61,19 +64,22 @@ angular.module('vecontactCtr',[])
         $http.get("/api/getimg")
         .success(function(data){
             $.each(data, function(key,values){
-              if(data[key].typeimage == "background")
+              if(data[key].appName = "veContact")
               {
-                 $scope.arrayImagesBG.push(data[key]);
-              }
-              else if(data[key].typeimage == "cta"){
-                  $scope.arrayImagesCTA.push(data[key]);
-              }
-              else if(data[key].typeimage == "close"){
-                  $scope.arrayImagesClose.push(data[key]);
-              }
-              else
-              {
-                console.log(">>>>>Type image doesnt specify, please check the database");
+                if(data[key].typeimage == "background")
+                {
+                   $scope.arrayImagesBG.push(data[key]);
+                }
+                else if(data[key].typeimage == "cta"){
+                    $scope.arrayImagesCTA.push(data[key]);
+                }
+                else if(data[key].typeimage == "close"){
+                    $scope.arrayImagesClose.push(data[key]);
+                }
+                else
+                {
+                  console.log(">>>>>Type image doesnt specify, please check the database");
+                }
               }
             });  
         }).error(function(data){
