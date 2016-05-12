@@ -2,7 +2,7 @@
     <div  ng-cloak class="container-fluid" ng-controller="defaultValue">
     	<!--Main values-->
     	<span ng-show="false" id="mainBannerSelected">{{images.src}}</span>
-    	<span ng-show="false" id="textSelected">{{resultObject.copyText}}</span>
+    	<span ng-show="false" id="textSelected">{{defaulvalues.defaulText}}</span>
     	<span ng-show="false" id="ctaImageSelected">{{ctaImages.src}}</span>
     	<span ng-show="false" id="closeButtonSelected">{{closeImages.src}}</span>
     	<!--ENd of main values-->
@@ -22,8 +22,8 @@
                     </div>
                     <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                       <div class="panel-body">
-                          <div class="arrayImages" ng-repeat="x in images" style="display:inline-block;">
-                            <img ng-show="true" ng-src="{{x.src}}" width="150" height="150" ng-click="images.src=pickTheImageSource($index)"/>
+                          <div class="arrayImages" ng-repeat="x in arrayImagesBG" style="display:inline-block;">
+                            <img ng-show="true" ng-src="{{x.source}}" width="150" height="150" ng-click="arrayImagesBG.source=pickTheImageSource($index)"/>
                           </div>
                       </div>
                     </div>
@@ -55,10 +55,10 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
-                           <div text-angular="text-angular" name="htmlcontent" ng-model="resultObject.copyText" ta-disabled='disabled' ta-max-text="100" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['justifyLeft','justifyCenter','justifyRight'],['insertLink'],['charcount']]"></div>
-                            <!--To see the Text with the tag please type ng-model="resultObject.copyText"-->
+                           <div text-angular="text-angular" name="htmlcontent" ng-model="defaulvalues.defaulText" ta-disabled='disabled' ta-max-text="100" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['justifyLeft','justifyCenter','justifyRight'],['insertLink'],['charcount']]"></div>
+                            <!--To see the Text with the tag please type ng-model="defaulvalues.defaulText"-->
                             <!-- <label>Please add the text:</label>
-                            <input type="text" ng-model="resultObject.copyText" /> -->
+                            <input type="text" ng-model="defaulvalues.defaulText" /> -->
                             <span style="font-size:11px;">*Max number of characteres 100</span>
                       </div>
                     </div>
@@ -74,8 +74,8 @@
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                       <div class="panel-body">
-                        <div class="arrayImages" ng-repeat="y in ctaImages" style="display:inline-block;">
-                            <img ng-show="true" ng-src="{{y.src}}" width="150" height="44" ng-click="ctaImages.src=pickTheImageSourceCTA($index);"/>
+                        <div class="arrayImages" ng-repeat="y in arrayImagesCTA" style="display:inline-block;">
+                            <img ng-show="true" ng-src="{{y.source}}" width="150" height="44" ng-click="arrayImagesCTA.source=pickTheImageSourceCTA($index);"/>
                           </div>
 
                         <!-- <label>Background Colour</label>
@@ -98,8 +98,8 @@
                     </div>
                     <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                       <div class="panel-body">
-                        <div class="arrayImages" ng-repeat="z in closeImages" style="display:inline-block;">
-                            <img ng-show="true" ng-src="{{z.src}}" width="20" height="20" ng-click="closeImages.src=pickTheImageSourceClose($index); buttonDisabled()"/>
+                        <div class="arrayImages" ng-repeat="z in arrayImagesClose" style="display:inline-block;">
+                            <img ng-show="true" ng-src="{{z.source}}" width="20" height="20" ng-click="arrayImagesClose.source=pickTheImageSourceClose($index); buttonDisabled()"/>
                           </div>
 
                         <!-- <label>Background Colour</label>
@@ -119,13 +119,13 @@
         </div> <!-- Close Introduce box elements-->
         <div class="col-md-1">
         </div>
-        <div id="previewBox" class="box col-md-5" ng-show="images.src">
+        <div id="previewBox" class="box col-md-5" ng-show="arrayImagesBG.source">
 
-          <div class="container1" style="background-image: url({{images.src}});width: 500px;height: 400px;position:relative;width:100%;height:100%;background-repeat:no-repeat;background-color:transparent">
-            <span class="close-button" data-link-action="close" style="left: 413px;top: 43px;width: 29px;height: 30px;position:absolute;background-image: url({{closeImages.src}})" ></span>
+          <div class="container1" style="background-image: url({{arrayImagesBG.source}});width: 500px;height: 400px;position:relative;width:100%;height:100%;background-repeat:no-repeat;background-color:transparent">
+            <span class="close-button" data-link-action="close" style="left: 413px;top: 43px;width: 29px;height: 30px;position:absolute;background-image: url({{arrayImagesClose.source}})" ></span>
             <div class="title" style="position:absolute"></div>
               <div  class="text" style="left: 147px;  top: 203px;  width: 213px; height: 116px;position:absolute"><span style="color: #e4c707; font-weight: bold; text-decoration: none; font-size: 15px;" class="link" data-link-action=""></span>
-              <p ng-bind-html="resultObject.copyText" style="
+              <p ng-bind-html="defaulvalues.defaulText" style="
               line-height: 16px;
               margin: 10px 0px 15px;
               padding: 0px;
@@ -138,10 +138,10 @@
               
               </p>
               </div>
-             <a class="button" style="left: 130px; top: 333px; width: 243px; height: 44px; background-image: url({{ctaImages.src}});position:absolute;transition: all 0.5s ease-out;line-height: 44px;border-radius: 3px; text-decoration:none;" data-link-action="stay-on-page"></a>
+             <a class="button" style="left: 130px; top: 333px; width: 243px; height: 44px; background-image: url({{arrayImagesCTA.source}});position:absolute;transition: all 0.5s ease-out;line-height: 44px;border-radius: 3px; text-decoration:none;" data-link-action="stay-on-page"></a>
         </div>
         <div style="display:none;">veGhost_do_not_remove</div>
-           <!-- <p>{{resultObject.copyText}}</p>
+           <!-- <p>{{defaulvalues.defaulText}}</p>
            <p>{{resultObject.backgroundColor}}</p> 
             <img ng-show="image.src" ng-src="{{image.src}}"/>
              <img ng-show="images.src" ng-src="{{images.src}}"/>-->

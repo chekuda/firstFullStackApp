@@ -6,16 +6,6 @@ body{
 	width: 100%;
 	height: 100%;
 }
-.panel .panel-heading{
-	background-image: -webkit-linear-gradient(top, #1976C9 0, #3D6D9D 100%);
-    background-image: -o-linear-gradient(top, #1976C9 0, #3D6D9D 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1976C9), to(#3D6D9D));
-    background-image: linear-gradient(to bottom, #1976C9 0, #3D6D9D 100%);
-    color: #fff;
-}
-.panel .panel-heading .panel-title a:hover{
-	text-decoration: none;
-}
 
 .container-fluid{
 	padding-top: 5%;
@@ -35,13 +25,7 @@ body{
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 
-.ta-editor {
-  min-height: 300px;
-  height: auto;
-  overflow: auto;
-  font-family: inherit;
-  font-size: 100%;
-}
+
 
 /*****
 	*contactUs*
@@ -128,16 +112,51 @@ body{
 /********End of Login template********/
 
 
-/*****
-	*TextAgular editor
-******/
+
+
+/***********************
+	*veContact*
+***********************/
+
+#previewBoxContact{
+	overflow-y:auto;
+}
+
+
+/*********End veContact*******/
+
+/***********************
+	*vePrompt*
+***********************/
+
+
+.panel .panel-heading{
+	background-image: -webkit-linear-gradient(top, #1976C9 0, #3D6D9D 100%);
+    background-image: -o-linear-gradient(top, #1976C9 0, #3D6D9D 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1976C9), to(#3D6D9D));
+    background-image: linear-gradient(to bottom, #1976C9 0, #3D6D9D 100%);
+    color: #fff;
+}
+
+.panel .panel-heading .panel-title a:hover{
+	text-decoration: none;
+}
+
+.ta-editor {
+  min-height: 300px;
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 100%;
+}
+
 .ta-scroll-window > .ta-bind {
 	min-height: 150px;
 }
 .ta-editor.ta-html, .ta-scroll-window.form-control{
 	min-height: 150px;
 }
-/******End textAgular editor*****/
+/******End vePrompt*****/
 
 
 

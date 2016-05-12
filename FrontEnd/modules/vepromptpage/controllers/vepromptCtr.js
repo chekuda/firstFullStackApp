@@ -6,55 +6,72 @@
 angular.module('vepromptctr',[])
     .controller('defaultValue',function($scope,$http){
 
-      /**
+      /*******************
         Initialize settings
-      **/
+      *********************/
 
-      $http.get('js/defaultValues.json')
-      .then(function(res){
+     $scope.resultObject = [];
+      $scope.defaulvalues ={
+        defaulText:"",
+        bkColour:"",
+        ctaText:"",
+        ctaColour:"",
+        contactTemplate:""
+      };
+      $http.get('const/defaultValues.json')
+      .success(function(res){
 
       /**
         @resultObject
         //Default values from Json file
       **/
-         $scope.resultObject = res.data;
+         $scope.resultObject.push(res);
+         $scope.defaulvalues.defaulText = $scope.resultObject[0].vepromptview[0].configurationSettings[0].copyText;
+         $scope.defaulvalues.bkColour = $scope.resultObject[0].vepromptview[0].configurationSettings[1].bkcolour;
+         $scope.defaulvalues.ctaText = $scope.resultObject[0].vepromptview[0].configurationSettings[2].ctaText;
+         $scope.defaulvalues.ctaColour = $scope.resultObject[0].vepromptview[0].configurationSettings[3].ctaColour;
+
+      }).error(function(data){
+        console.log("Error>>>>>> "+data);
       });
 
       // /***********************
       //   Getting an array of images
       // ***************************/
-      // $scope.arrayImagesBG;//background Images
-      // $scope.arrayImagesCTA;//CTA images
-      // $scope.arrayImagesClose;//Close images
-      // $scope.image;
-      // $scope.jose = function(arrayImagesBG)
-      // {
-      //   $http.get("/api/getimg")
-      //   .success(function(data){
-      //     return data;
-      //   // $.each(data, function(key,values){
-      //   //   if(data[key].typeimage == "background")
-      //   //   {
-      //   //      $scope.arrayImagesBG = data[key];
-      //   //   }
-      //   //   else if(data[key].typeimage == "cta"){
-      //   //       $scope.arrayImagesCTA = data[key];
-      //   //   }
-      //   //   else if(data[key].typeimage == "close"){
-      //   //       $scope.arrayImagesClose = data[key];
-      //   //   }
-      //   //   else
-      //   //   {
-      //   //     console.log(">>>>>Type image doesnt specify, please check the database");
-      //   //   }
-      //   // });        
-      //   }).error(function(data){
-      //     console.log("Error "+ data);
-      //   });
-      // };
-      // $scope.jose();
+      
+      $scope.arrayImagesBG = [];//Array of background Images
+      $scope.arrayImagesCTA = [];//Array of CTA images
+      $scope.arrayImagesClose = [];//Array of Close images
+
+     
+        $http.get("/api/getimg")
+        .success(function(data){
+            $.each(data, function(key,values){
+              if(data[key].appName == "vePrompt")//only for vePrompt
+              {
+                if(data[key].typeimage == "background")
+                {
+                   $scope.arrayImagesBG.push(data[key]);
+                }
+                else if(data[key].typeimage == "cta"){
+                    $scope.arrayImagesCTA.push(data[key]);
+                }
+                else if(data[key].typeimage == "close"){
+                    $scope.arrayImagesClose.push(data[key]);
+                }
+                else
+                {
+                  console.log(">>>>>Type image doesnt specify, please check the database");
+                }
+              }
+            });  
+        }).error(function(data){
+          console.log("Error "+ data);
+        });
 
        
+
+      
       /*************************************
         *Templates
       **************************************/
@@ -82,89 +99,27 @@ angular.module('vepromptctr',[])
       };
 
 
-     
-      // /**
-      //   List of main images
-      // **/
-
-      $scope.images = [
-        {
-        name:"first",
-        src:'media/veprompt/banner/back0.png'
-        },
-        {
-        name:"second",
-        src:'media/veprompt/banner/back1.png'
-        },
-        {
-        name:"third",
-        src:'media/veprompt/banner/back2.png'
-        },
-        {
-        name:"forth",
-        src:'media/veprompt/banner/back3.png'
-        }
-        ];
-
-      /**
-        List of cta images
-      **/
-
-        $scope.ctaImages = [
-        {
-        name:"first",
-        src:'media/veprompt/cta/CTA0.png'
-        },
-        {
-        name:"second",
-        src:'media/veprompt/cta/CTA2.png'
-        },
-        {
-        name:"third",
-        src:'media/veprompt/cta/CTA2.png'
-        }
-        ];
-
-      /**
-        List of close images
-      **/
-
-        $scope.closeImages = [
-        {
-        name:"first",
-        src:'media/veprompt/close/close0.png'
-        },
-        {
-        name:"second",
-        src:'media/veprompt/close/close1.png'
-        },
-        {
-        name:"third",
-        src:'media/veprompt/close/close2.png'
-        }
-        ];
-
-        /**
+        /************************
+          Display images on preview,
           scope the index of image
-        **/
+        **************************/
 
-        $scope.pickTheImageSource =function(index){
-          $scope.visible = true;
-          return $scope.images[index].src;
+        $scope.pickTheImageSource =function(index){//saving the image clicked into the module to display into the preview
+          return $scope.arrayImagesBG[index].source;
         };
 
-        $scope.pickTheImageSourceCTA =function(index){
-          return $scope.ctaImages[index].src;
+        $scope.pickTheImageSourceCTA =function(index){//saving the image clicked into the module to display into the preview
+          return $scope.arrayImagesCTA[index].source;
         };
 
-         $scope.pickTheImageSourceClose =function(index){
-          return $scope.closeImages[index].src;
+         $scope.pickTheImageSourceClose =function(index){//saving the image clicked into the module to display into the preview
+          return $scope.arrayImagesClose[index].source;
         };
 
          /**
           *Button save Creative
         **/
-        if($scope.images && $scope.ctaImages && $scope.closeImages)//check when the client select all the properties of the template
+        if($scope.arrayImagesBG.lenght !=0 && $scope.arrayImagesCTA.lenght && $scope.arrayImagesClose.lenght)//check when the client select all the properties of the template
         {
           $scope.avtiveButtonSaving ="true";
         }

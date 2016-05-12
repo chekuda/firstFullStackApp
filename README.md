@@ -5,10 +5,25 @@
 		1- For token and masster Acc
 	- NodeJS
 		1-API
-			-Controllers
-				a- Middlewares for route the services
-			-Services
-				a- Actions as request information to the DB
+			-Modules
+				1- Users:
+					-Controllers:
+						a- Middlewares for route the services
+					-Services:
+						a- AuthenticationToken: Check the token for the client from sessionStore before status change of page
+						b- createToken: Create token for longer client session
+						c- CreateUser:
+						d- DeleteUser:
+						e- getUsersfromDB: Request all the users from DB
+						f- login: Filter the users from DB as the value coming from Frontend
+						g- storeUserToDB: 
+				2-ImagesHandler:
+					-Controllers
+						a- Middlewares for route the services
+					-Services
+						a- getOmagesfromdb: Request all the images from the DB(Front end will filter them up)
+						b- insertimages: API for administrator upload images into the DB.
+			
 	- NPM
 		1- Installing the modules
 	- Express

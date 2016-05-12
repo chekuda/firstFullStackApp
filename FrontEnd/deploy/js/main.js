@@ -2,9 +2,10 @@
       *Main Controller
       @vepromptctr: vePrompt tool controller module
       @insertImagestoDB: Insert images in DB (administrator)
+      @vecontactCtr: veContact tool controller module
     **/
 
-    var app = angular.module('veoptimazer', ['colorpicker.module','ngImageInputWithPreview','ui.router','textAngular','ngRoute','ngAnimate','vepromptctr','loginctr','insertImagestoDB']);//'ui.bootstrap'
+    var app = angular.module('veoptimazer', ['colorpicker.module','ngImageInputWithPreview','ui.router','textAngular','ngRoute','ngAnimate','vepromptctr','vecontactCtr','loginctr','insertImagestoDB']);//'ui.bootstrap'
 
 
     /***************
@@ -66,6 +67,12 @@
           url:"/",
           templateUrl:"/loginpage/views/login.html",
           needAuth: false,
+          admin: false
+        })
+        .state('vecontact',{
+          url:"/vecontact",
+          templateUrl:"/vecontactpage/views/vecontact.html",
+          needAuth: true,
           admin: false
         })
         .state('veprompt',{
