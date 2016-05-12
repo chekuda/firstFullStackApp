@@ -1,0 +1,103 @@
+
+    <div  ng-cloak class="container-fluid" ng-controller="defaultValueContact">
+    	<!--Main values-->
+    	<span ng-show="false" id="mainBannerSelected">{{images.src}}</span>
+    	<span ng-show="false" id="textSelected">{{resultObject.copyText}}</span>
+    	<span ng-show="false" id="ctaImageSelected">{{ctaImages.src}}</span>
+    	<span ng-show="false" id="closeButtonSelected">{{closeImages.src}}</span>
+    	<!--ENd of main values-->
+      
+
+        <div class="box col-md-4">
+            <div class="accordion-test">
+
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <!--Upload Image-->
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Upload Logo
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                          
+                          <input type="file" name="myImage" image-with-preview ng-model="image" accept="image/jpeg,image/png" dimensions="height < 100 && width < 327">
+                          <span class="error" ng-show="myImage.$error.image">Not a JPEG or a PNG!</span>
+                          <span class="error" ng-show="myImage.$error.dimensions">
+                            Invalid dimensions! Expecting an image smaller than 327x100.
+                          </span>
+                          <p><small>Note: Image should be smaller than 327Hx100W</small></p>
+                        </div>
+                      </div>
+                  </div>
+                   <!-- Theme text -->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Theme
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                           
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Main text -->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Main Text
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                           <div text-angular="text-angular" name="htmlcontentContact" ng-model="defaulvalues.defaulText" ta-disabled='disabled' ta-max-text="100" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['justifyLeft','justifyCenter','justifyRight'],['insertLink'],['charcount']]"></div>
+                            <!--To see the Text with the tag please type ng-model="resultObject.copyText"-->
+                            <!-- <label>Please add the text:</label>
+                            <input type="text" ng-model="resultObject.copyText" /> -->
+                            <span style="font-size:11px;">*Max number of characteres 100</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!--CTA-->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                          Choose your CTA
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                      <div class="panel-body">
+                        <label>Background Colour</label>
+                        <input colorpicker="rgba" type="text" ng-model="defaulvalues.bkColour" style="background-color:{{resultObject.backgroundColor}};" /><br>
+                        <label>Text</label>
+                        <input type="text" ng-model="defaulvalues.ctaText"/><br>
+                        <label>Text Colour</label>
+                        <input colorpicker="rgba" type="text" ng-model="defaulvalues.ctaColour" style="background-color:{{resultObject.ctaColour}};" />
+                      </div>
+                    </div>
+                  </div>
+                  
+              </div> <!-- Close Accordeon-->
+  	        <div>
+  	  			<button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button>
+  	        </div>  
+          </div> <!-- Close Introduce box elements-->
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div id="previewBoxContact" class="box col-md-7" ng-show="true">
+          
+      </div>
+      
+    </div>
