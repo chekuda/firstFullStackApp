@@ -21,7 +21,7 @@ angular.module('vecontactCtr',[])
         bkColour:"",//for CTA configuration settings
         ctaText:"",//For CTA configuration settings
         ctaColour:"",//For CTA configuration settins
-        contactTemplate:"",//HTML template
+        // contactTemplate:"",//HTML template
         contactLogo:"",//Default logo
         contactTheme:"",//Main banners 
         // contactCTA:"",//for the CTA of vecontact
@@ -31,7 +31,7 @@ angular.module('vecontactCtr',[])
       .success(function(res){
 
          $scope.resultObject.push(res);//Getting the data from the defaultJSONFile
-         $scope.defaulvalues.contactTemplate = $scope.resultObject[0].vecontactview[1].templates[1].htmlCode;//templateHTML
+         // $scope.defaulvalues.contactTemplate = $scope.resultObject[0].vecontactview[1].templates[1].htmlCode;//templateHTML
          $scope.defaulvalues.contactLogo = $scope.resultObject[0].vecontactview[1].templates[2].contactLogo;//DefaultLogo
          $scope.defaulvalues.contactTheme = $scope.resultObject[0].vecontactview[1].templates[3].contactTheme;//theme
 
@@ -88,4 +88,12 @@ angular.module('vecontactCtr',[])
 
      
 
-  });
+  })
+/*************************
+  **Using directive to load the HTML for veContact**
+************************/
+.directive('ngTemplates', function(){
+  return {
+    templateUrl: "const/templates/vecontact/template1.html"//returning the template 1
+  }
+});
