@@ -5,7 +5,7 @@
       @vecontactCtr: veContact tool controller module
     **/
 
-    var app = angular.module('veoptimazer', ['colorpicker.module','ngImageInputWithPreview','ui.router','textAngular','ngRoute','ngAnimate','vepromptctr','vecontactCtr','loginctr','insertImagestoDB']);//'ui.bootstrap'
+    var app = angular.module('veoptimazer', ['ngImageInputWithPreview','ui.router','textAngular','ngRoute','ngAnimate','vepromptctr','vecontactCtr','loginctr','insertImagestoDB','demo']);//'ui.bootstrap'
 
 
     /***************
