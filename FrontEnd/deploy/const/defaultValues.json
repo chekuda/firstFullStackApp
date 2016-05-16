@@ -18,7 +18,8 @@
 		{
 			"configurationSettings":
 			[
-				{"copyText":"Please type your text here"},
+				{"copyTextMain":"Please type your text here"},
+				{"copyTextBottom":"Please type your text here"},
 				{"bkcolour":"rgba(255,255,255,1)"},
 				{"ctaText":"Buy Now"},
 				{"ctaColour":"rgba(255,255,255,1)"},
