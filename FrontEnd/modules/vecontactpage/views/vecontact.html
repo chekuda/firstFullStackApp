@@ -16,7 +16,7 @@
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             Upload Logo
                           </a>
                         </h4>
@@ -44,7 +44,14 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
-                           
+                        <div ng-repeat="sectors in sectorsAvailable" class="menuSectors">
+                          <a data-target="#SubMenu{{sectors.id}}" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu{{sectors.id}}">{{sectors.sector}} <i class="fa fa-caret-down"></i></a>
+                          <div class="collapse list-group-submenu" id="SubMenu{{sectors.id}}">
+                            <div ng-repeat="themes in arrayImagesBG">
+                                <a href="#" ng-if="themes.sector == sectors.sector" class="list-group-item" data-parent="#SubMenu{{sectors.id}}" ng-click="defaulvalues.contactTheme=pickTheme(themes.id)">{{sectors.sector}} {{themes.id}}</a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -57,9 +64,28 @@
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                       <div class="panel-body">
-                           <div text-angular="text-angular" name="htmlcontentContact" ng-model="defaulvalues.defaulText" ta-disabled='disabled' ta-max-text="100" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['justifyLeft','justifyCenter','justifyRight'],['insertLink'],['charcount']]"></div>
+                           <div text-angular="text-angular" name="htmlcontentContact" ng-model="defaulvalues.defaulTextmain" ta-disabled='disabled' ta-max-text="100" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['justifyLeft','justifyCenter','justifyRight'],['insertLink'],['charcount']]"></div>
+                            <!--To see the Text with the tag please type ng-model="resultObject.copyText"-->
+                            <!-- <label>Please add the text:</label>
+                            <input type="text" ng-model="resultObject.copyText" /> -->
+                            <span style="font-size:11px;">*Max number of characteres 100</span>
+                      </div>
+                    </div>
+                  </div>
+                   <!-- Main text -->
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                          Bottom Text
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                      <div class="panel-body">
+                           <div text-angular="text-angular" name="htmlcontentContactbottom" ng-model="defaulvalues.defaulTextbottom" ta-disabled='disabled' ta-max-text="100" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['justifyLeft','justifyCenter','justifyRight'],['insertLink'],['charcount']]"></div>
                             <!--To see the Text with the tag please type ng-model="resultObject.copyText"-->
                             <!-- <label>Please add the text:</label>
                             <input type="text" ng-model="resultObject.copyText" /> -->
@@ -69,14 +95,14 @@
                   </div>
                   <!--CTA-->
                   <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFour">
+                    <div class="panel-heading" role="tab" id="headingFive">
                       <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                           Choose your CTA
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                       <div class="panel-body">
                         <label>Background Colour</label>
                         <input colorpicker="rgba" type="text" ng-model="defaulvalues.bkColour" style="background-color:{{defaulvalues.bkColour}};" /><br>
@@ -87,6 +113,7 @@
                       </div>
                     </div>
                   </div>
+                   
                   
               </div> <!-- Close Accordeon-->
   	        <div>
