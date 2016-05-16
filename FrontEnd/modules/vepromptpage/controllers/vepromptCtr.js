@@ -3,7 +3,7 @@
   Controller for vePrompt tool
 
 ***************/
-angular.module('vepromptctr',[])
+angular.module('vepromptctr',['colorpicker.module'])
     .controller('defaultValue',function($scope,$http){
 
       /*******************
