@@ -3,7 +3,7 @@
   Controller for vePrompt tool
 
 ***************/
-angular.module('vecontactCtr',[])
+angular.module('vecontactCtr',['colorpicker.module'])
     .controller('defaultValueContact',function($scope,$http){
 
 
@@ -17,7 +17,8 @@ angular.module('vecontactCtr',[])
       *********************/
       $scope.resultObject = [];
       $scope.defaulvalues ={
-        defaulText:"",//For configuration settings
+        defaulTextmain:"",//For configuration settings
+        defaulTextbottom:"",
         bkColour:"",//for CTA configuration settings
         ctaText:"",//For CTA configuration settings
         ctaColour:"",//For CTA configuration settins
@@ -37,11 +38,12 @@ angular.module('vecontactCtr',[])
 
          // document.getElementById("previewBoxContact").innerHTML += $scope.defaulvalues.contactTemplate;
    
-         $scope.defaulvalues.defaulText = $scope.resultObject[0].vecontactview[0].configurationSettings[0].copyText;//Main copy
-         $scope.defaulvalues.bkColour = $scope.resultObject[0].vecontactview[0].configurationSettings[1].bkcolour;
-         $scope.defaulvalues.ctaText = $scope.resultObject[0].vecontactview[0].configurationSettings[2].ctaText;
-         $scope.defaulvalues.ctaColour = $scope.resultObject[0].vecontactview[0].configurationSettings[3].ctaColour;
-         $scope.defaulvalues.contactBGcolour = $scope.resultObject[0].vecontactview[0].configurationSettings[4].contactBGcolour;//I want to use this for the 
+         $scope.defaulvalues.defaulTextmain = $scope.resultObject[0].vecontactview[0].configurationSettings[0].copyTextMain;//Main copy
+         $scope.defaulvalues.defaulTextbottom = $scope.resultObject[0].vecontactview[0].configurationSettings[1].copyTextBottom;//Bottom copy
+         $scope.defaulvalues.bkColour = $scope.resultObject[0].vecontactview[0].configurationSettings[2].bkcolour;
+         $scope.defaulvalues.ctaText = $scope.resultObject[0].vecontactview[0].configurationSettings[3].ctaText;
+         $scope.defaulvalues.ctaColour = $scope.resultObject[0].vecontactview[0].configurationSettings[4].ctaColour;
+         $scope.defaulvalues.contactBGcolour = $scope.resultObject[0].vecontactview[0].configurationSettings[5].contactBGcolour;//I want to use this for the 
 
          
 
@@ -59,12 +61,13 @@ angular.module('vecontactCtr',[])
       $scope.arrayImagesBG = [];//Array of background Images
       $scope.arrayImagesCTA = [];//Array of CTA images
       $scope.arrayImagesClose = [];//Array of Close images
+      $scope.sectorsAvailable = [];//Array of Close images
 
      
         $http.get("/api/getimg")
         .success(function(data){
             $.each(data, function(key,values){
-              if(data[key].appName = "veContact")
+              if(data[key].appName == "veContact")
               {
                 if(data[key].typeimage == "background")
                 {
@@ -80,14 +83,52 @@ angular.module('vecontactCtr',[])
                 {
                   console.log(">>>>>Type image doesnt specify, please check the database");
                 }
+                if(data[key].sector)
+                {
+                  
+                  if($scope.addSector(data[key].sector) ==false)
+                  {
+                    $scope.sectorsAvailable.push(data[key]);//creating an array with all the different sectors
+                  }
+                }
               }
             });  
         }).error(function(data){
           console.log("Error "+ data);
         });
 
-     
-
+      /**************
+        Checking different sectors
+      **************/
+     $scope.addSector = function(sectorToCheck)
+     {
+          var sectorExist = false;
+            if($scope.sectorsAvailable.length>=1)
+            {
+              for(var i=0;i<$scope.sectorsAvailable.length; i++)
+              {
+                if($scope.sectorsAvailable[i].sector)
+                {
+                  if($scope.sectorsAvailable[i].sector == sectorToCheck)
+                  {
+                    sectorExist =true;
+                  }
+                }
+              }
+            }
+            return sectorExist//return false if sector doesnt exist
+      }
+    $scope.pickTheme = function(pickedId)//Retrieving the id of the theme clicked
+    {
+      for(var i=0; i<$scope.arrayImagesBG.length;i++)
+      {
+        if($scope.arrayImagesBG[i].id == pickedId)
+        {
+          console.log($scope.arrayImagesBG[i].source);
+          return $scope.arrayImagesBG[i].source;//retunr the path with the new
+        }
+      }
+    }
   })
 /*************************
   **Using directive to load the HTML for veContact**
