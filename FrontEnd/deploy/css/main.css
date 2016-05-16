@@ -122,6 +122,10 @@ body{
 	overflow-y:auto;
 }
 
+.menuSectors{
+	text-transform: capitalize;
+}
+
 
 /*********End veContact*******/
 
