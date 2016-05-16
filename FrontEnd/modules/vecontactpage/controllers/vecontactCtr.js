@@ -32,8 +32,8 @@ angular.module('vecontactCtr',[])
 
          $scope.resultObject.push(res);//Getting the data from the defaultJSONFile
          // $scope.defaulvalues.contactTemplate = $scope.resultObject[0].vecontactview[1].templates[1].htmlCode;//templateHTML
-         $scope.defaulvalues.contactLogo = $scope.resultObject[0].vecontactview[1].templates[2].contactLogo;//DefaultLogo
-         $scope.defaulvalues.contactTheme = $scope.resultObject[0].vecontactview[1].templates[3].contactTheme;//theme
+         $scope.defaulvalues.contactLogo = $scope.resultObject[0].vecontactview[1].templates[1].contactLogo;//DefaultLogo
+         $scope.defaulvalues.contactTheme = $scope.resultObject[0].vecontactview[1].templates[2].contactTheme;//theme
 
          // document.getElementById("previewBoxContact").innerHTML += $scope.defaulvalues.contactTemplate;
    
