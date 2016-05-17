@@ -6,6 +6,9 @@
 angular.module('vepromptctr',['colorpicker.module'])
     .controller('defaultValue',function($scope,$http){
 
+      document.getElementById("configurationSettings").style.height = screen.height+"px";
+      document.getElementById("previewBox").style.height = screen.height+"px";
+
       /*******************
         Initialize settings
       *********************/
@@ -16,7 +19,9 @@ angular.module('vepromptctr',['colorpicker.module'])
         bkColour:"",
         ctaText:"",
         ctaColour:"",
-        contactTemplate:""
+        bgImage:"",
+        ctaImage:"",
+        closeImage:""
       };
       $http.get('const/defaultValues.json')
       .success(function(res){
@@ -26,10 +31,18 @@ angular.module('vepromptctr',['colorpicker.module'])
         //Default values from Json file
       **/
          $scope.resultObject.push(res);
-         $scope.defaulvalues.defaulText = $scope.resultObject[0].vepromptview[0].configurationSettings[0].copyText;
+         
          $scope.defaulvalues.bkColour = $scope.resultObject[0].vepromptview[0].configurationSettings[1].bkcolour;
          $scope.defaulvalues.ctaText = $scope.resultObject[0].vepromptview[0].configurationSettings[2].ctaText;
          $scope.defaulvalues.ctaColour = $scope.resultObject[0].vepromptview[0].configurationSettings[3].ctaColour;
+
+         //template
+         $scope.defaulvalues.defaulText = $scope.resultObject[0].vepromptview[0].configurationSettings[0].copyText;
+         $scope.defaulvalues.bgImage = $scope.resultObject[0].vepromptview[1].templates[1].promptBg;//Default BG image
+         $scope.defaulvalues.ctaImage = $scope.resultObject[0].vepromptview[1].templates[2].promptCTA;//Default CTA image
+         $scope.defaulvalues.closeImage = $scope.resultObject[0].vepromptview[1].templates[3].promptClose;//Default Close image
+
+
 
       }).error(function(data){
         console.log("Error>>>>>> "+data);
@@ -116,12 +129,20 @@ angular.module('vepromptctr',['colorpicker.module'])
           return $scope.arrayImagesClose[index].source;
         };
 
-         /**
-          *Button save Creative
-        **/
+         /******************
+          *Button save Creative*
+        **********************/
         if($scope.arrayImagesBG.lenght !=0 && $scope.arrayImagesCTA.lenght && $scope.arrayImagesClose.lenght)//check when the client select all the properties of the template
         {
           $scope.avtiveButtonSaving ="true";
         }
 
-  });
+  })
+/*************************
+  **Using directive to load the HTML for vePrompt**
+************************/
+.directive('ngTemplatevp', function(){
+  return {
+    templateUrl: "const/templates/veprompt/template1.html"//returning the template 1
+  }
+});
