@@ -11,6 +11,7 @@ angular.module('vecontactCtr',['colorpicker.module'])
         Initialize previewBox
       ***************/
       document.getElementById("previewBoxContact").style.height = screen.height+"px";
+      document.getElementById("configurationSettings").style.height = screen.height+"px";
 
       /*******************
         Initialize defaultValues
