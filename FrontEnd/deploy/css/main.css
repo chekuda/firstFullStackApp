@@ -6,7 +6,11 @@ body{
 	width: 100%;
 	height: 100%;
 }
+/**********************
+TEST
+**********************/
 
+/*********************/
 .container-fluid{
 	/*padding-top: 5%;*/
 	width: 100%;
@@ -14,7 +18,7 @@ body{
 }
 
 .container-fluid div.box{
-	height: 500px;
+	/*height: 500px;*/
 	/*background-color: #ffffff;*/
 	/*border:solid 1px #cccccc;*/
 	text-align: center;
@@ -30,7 +34,6 @@ body{
 	    -webkit-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
 	    -moz-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
 	    box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
-	    border-radius: 10px;
 }
 
 
@@ -129,11 +132,10 @@ body{
 #previewBoxContact{
 	overflow-y:auto;
 	 background-color: #F3F3F3;
-    padding-top: 20px;
+    	padding-top: 20px;
     -webkit-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
     -moz-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
     box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
-    border-radius: 10px;
 }
 
 .menuSectors{
@@ -148,11 +150,30 @@ body{
 ***********************/
 
 
+.head{
+	background-color:#4D98E3;
+	padding: 10px;
+	transition: all 0.3s ease 0s;
+}
+.head:hover{
+box-shadow: inset 0 0 0 5px #2A88E6;
+	}
+.head span{
+	padding:10px;
+	text-decoration:none;
+	font-size:16px;
+	color: #fff;
+}
+
+.head .glyphicon-chevron-right{
+	color: #fff;
+}
+
 .panel .panel-heading{
-	background-image: -webkit-linear-gradient(top, #1976C9 0, #3D6D9D 100%);
-    background-image: -o-linear-gradient(top, #1976C9 0, #3D6D9D 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1976C9), to(#3D6D9D));
-    background-image: linear-gradient(to bottom, #1976C9 0, #3D6D9D 100%);
+	background-image: -webkit-linear-gradient(top, #3D6D9D 0, #3D6D9D 100%);
+    background-image: -o-linear-gradient(top, #3D6D9D 0, #3D6D9D 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #3D6D9D), to(#3D6D9D));
+    background-image: linear-gradient(to bottom, #3D6D9D 0, #3D6D9D 100%);
     color: #fff;
 }
 
@@ -165,11 +186,18 @@ body{
     -webkit-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
     -moz-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
     box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
-    border-radius: 10px;
 }
 .promptBox{
 	width: 500px;
     margin: 0 auto;
+}
+
+.shapeDiv{
+	display: inline-block;
+}
+.shapeglyphicon{
+	height: 100px;
+	width: 100px;
 }
 
 .ta-editor {
