@@ -1,14 +1,14 @@
 
 
 body{
-	background-color: #eee !important;
+	background-color: #fff !important;
 	font-family: arial;
 	width: 100%;
 	height: 100%;
 }
 
 .container-fluid{
-	padding-top: 5%;
+	/*padding-top: 5%;*/
 	width: 100%;
 	height: 100%;
 }
@@ -24,6 +24,14 @@ body{
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
+#configurationSettings{
+	    background-color: #F3F3F3;
+	    padding: 20px;
+	    -webkit-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+	    -moz-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+	    box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+	    border-radius: 10px;
+}
 
 
 
@@ -120,6 +128,12 @@ body{
 
 #previewBoxContact{
 	overflow-y:auto;
+	 background-color: #F3F3F3;
+    padding-top: 20px;
+    -webkit-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+    -moz-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+    box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+    border-radius: 10px;
 }
 
 .menuSectors{
@@ -144,6 +158,18 @@ body{
 
 .panel .panel-heading .panel-title a:hover{
 	text-decoration: none;
+}
+#previewBox{
+	 background-color: #F3F3F3;
+    padding-top: 20px;
+    -webkit-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+    -moz-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+    box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+    border-radius: 10px;
+}
+.promptBox{
+	width: 500px;
+    margin: 0 auto;
 }
 
 .ta-editor {
