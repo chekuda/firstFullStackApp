@@ -8,114 +8,109 @@
     	<!--ENd of main values-->
       
         <div id="configurationSettings" class="box col-md-6">
-            <div class="accordion-test">
+         
+            <div ng-show="statusWizard == 'stepTwo'">
+              <div class="head">
+                <span>Settings</span><span class="glyphicon glyphicon-chevron-right"></span>
+              </div>
+              <div id="accordionPrompt" class="accordion-test">
 
-              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                 <!-- Galerry main Images -->
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFour">
-                      <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                          Choose Background
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                      <div class="panel-body">
-                          <div class="arrayImages" ng-repeat="x in arrayImagesBG" style="display:inline-block;">
-                            <img ng-show="true" ng-src="{{x.source}}" width="150" height="150" ng-click="defaulvalues.bgImage=pickTheImageSource($index)"/>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--Upload Image-->
-                    <!-- <div class="panel panel-default">
-                      <div class="panel-heading" role="tab" id="headingOne">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                   <!-- Galerry main Images -->
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingFour">
                         <h4 class="panel-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Upload Main Image
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Choose Background
                           </a>
-                        </h4>ga
+                        </h4>
                       </div>
-                      <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                         <div class="panel-body">
-                          <input type="file" name="myImage" image-with-preview ng-model="image" accept="image/jpeg,image/png">
-                          <span class="error" ng-show="myImage.$error.image">Not a JPEG or a PNG!</span>
+                            <div class="arrayImages" ng-repeat="x in arrayImagesBG" style="display:inline-block;">
+                              <img ng-show="true" ng-src="{{x.source}}" width="150" height="150" ng-click="defaulvalues.bgImage=pickTheImageSource($index)"/>
+                            </div>
                         </div>
                       </div>
-                  </div> -->
-                  <!-- Main text -->
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                      <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Main Text
-                        </a>
-                      </h4>
                     </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                      <div class="panel-body">
-                           <div text-angular="text-angular" name="htmlcontent" ng-model="defaulvalues.defaulText" ta-disabled='disabled' ta-max-text="100" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['justifyLeft','justifyCenter','justifyRight'],['insertLink'],['charcount']]"></div>
-                            <!--To see the Text with the tag please type ng-model="defaulvalues.defaulText"-->
-                            <!-- <label>Please add the text:</label>
-                            <input type="text" ng-model="defaulvalues.defaulText" /> -->
-                            <span style="font-size:11px;">*Max number of characteres 100</span>
+                    <!-- Main text -->
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Main Text
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                             <div text-angular="text-angular" name="htmlcontent" ng-model="defaulvalues.defaulText" ta-disabled='disabled' ta-max-text="100" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['justifyLeft','justifyCenter','justifyRight'],['insertLink'],['charcount']]"></div>
+                              <!--To see the Text with the tag please type ng-model="defaulvalues.defaulText"-->
+                              <!-- <label>Please add the text:</label>
+                              <input type="text" ng-model="defaulvalues.defaulText" /> -->
+                              <span style="font-size:11px;">*Max number of characteres 100</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!--CTA-->
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Choose your CTA
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                          <div class="arrayImages" ng-repeat="y in arrayImagesCTA" style="display:inline-block;">
+                              <img ng-show="true" ng-src="{{y.source}}" width="150" height="44" ng-click="defaulvalues.ctaImage=pickTheImageSourceCTA($index);"/>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Close Button-->
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingFive">
+                        <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Choose your Close Button
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="panel-body">
+                          <div class="arrayImages" ng-repeat="z in arrayImagesClose" style="display:inline-block;">
+                              <img ng-show="true" ng-src="{{z.source}}" width="20" height="20" ng-click="defaulvalues.closeImage=pickTheImageSourceClose($index); buttonDisabled()"/>
+                            </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <!--CTA-->
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Choose your CTA
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                      <div class="panel-body">
-                        <div class="arrayImages" ng-repeat="y in arrayImagesCTA" style="display:inline-block;">
-                            <img ng-show="true" ng-src="{{y.source}}" width="150" height="44" ng-click="defaulvalues.ctaImage=pickTheImageSourceCTA($index);"/>
-                          </div>
-
-                        <!-- <label>Background Colour</label>
-                        <input colorpicker="rgba" type="text" ng-model="resultObject.backgroundColor" style="background-color:{{resultObject.backgroundColor}};" /><br>
-                        <label>Text</label>
-                        <input type="text" ng-model="resultObject.ctaText"/>
-                        <label>Text Colour</label>
-                        <input colorpicker="rgba" type="text" ng-model="resultObject.ctaColour" style="background-color:{{resultObject.ctaColour}};" /> -->
-                      </div>
-                    </div>
-                  </div>
-                  <!--Close Button-->
-                  <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFive">
-                      <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                          Choose your Close Button
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                      <div class="panel-body">
-                        <div class="arrayImages" ng-repeat="z in arrayImagesClose" style="display:inline-block;">
-                            <img ng-show="true" ng-src="{{z.source}}" width="20" height="20" ng-click="defaulvalues.closeImage=pickTheImageSourceClose($index); buttonDisabled()"/>
-                          </div>
-
-                        <!-- <label>Background Colour</label>
-                        <input colorpicker="rgba" type="text" ng-model="resultObject.backgroundColor" style="background-color:{{resultObject.backgroundColor}};" /><br>
-                        <label>Text</label>
-                        <input type="text" ng-model="resultObject.ctaText"/>
-                        <label>Text Colour</label>
-                        <input colorpicker="rgba" type="text" ng-model="resultObject.ctaColour" style="background-color:{{resultObject.ctaColour}};" /> -->
-                      </div>
-                    </div>
-                  </div>
+                </div> <!-- Close Accordeon-->
+    	        <div>
+    	  			<!-- <button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button> -->
+    	        </div>
+            </div><!--End StepTwoView-->
+            <div ng-show="statusWizard == 'stepOne'">
+              <div class="head">
+                  <span>Templates</span><span class="glyphicon glyphicon-chevron-right"></span>
+              </div> 
+              <div id="shapes">
+                <div class="shapeDiv box col-md-6">
+                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="changeStatusWizard($index)">
                 </div>
-              </div> <!-- Close Accordeon-->
-	        <div>
-	  			<button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button>
-	        </div>  
+                <div class="shapeDiv box col-md-6">
+                  <img class="shapeglyphicon" src="media/test/rombotest.png" ng-click="changeStatusWizard($index)">
+                </div>
+                <div class="shapeDiv box col-md-6">
+                  <img class="shapeglyphicon" src="media/test/squaretest.png" ng-click="changeStatusWizard($index)">
+                </div>
+                <div class="shapeDiv box col-md-6">
+                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="changeStatusWizard($index)">
+                </div>
+              </div>
+            </div><!--End of stepOneView-->
         </div> <!-- Close Introduce box elements-->
         <div class="col-md-1">
         </div>
