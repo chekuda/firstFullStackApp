@@ -6,8 +6,17 @@
 angular.module('vepromptctr',['colorpicker.module'])
     .controller('defaultValue',function($scope,$http){
 
+      /*************************
+      Initialize sizes of the boxes
+      ***************************/
+
       document.getElementById("configurationSettings").style.height = screen.height+"px";
       document.getElementById("previewBox").style.height = screen.height+"px";
+
+      /************************
+        Initiazin variables of wizzard
+      *************************/
+      $scope.statusWizard = "stepOne";//Display always the step Shape onLoad page
 
       /*******************
         Initialize settings
@@ -82,34 +91,39 @@ angular.module('vepromptctr',['colorpicker.module'])
           console.log("Error "+ data);
         });
 
-       
-
+       /*************************
+          Display Wizard Steps
+       *************************/
+       $scope.changeStatusWizard = function(index)
+       {
+        $scope.statusWizard = "stepTwo";
+       }
       
       /*************************************
-        *Templates
-      **************************************/
+      //   *Templates
+      // **************************************/
 
-      $scope.savingFinalTemplate = function(){
+      // $scope.savingFinalTemplate = function(){
 
-        // $scope.confiSettings = {
-        //   mainBanner = "",
-        //   maintext = "",
-        //   ctaImage = "",
-        //   closeButton = ""
-        // };
-        $scope.mainBanner = document.getElementById('mainBannerSelected').innerHTML;
-        $scope.maintext = document.getElementById('textSelected').innerHTML;
-        $scope.ctaImage = document.getElementById('ctaImageSelected').innerHTML;
-        $scope.closeButton = document.getElementById('closeButtonSelected').innerHTML;
+      //   // $scope.confiSettings = {
+      //   //   mainBanner = "",
+      //   //   maintext = "",
+      //   //   ctaImage = "",
+      //   //   closeButton = ""
+      //   // };
+      //   $scope.mainBanner = document.getElementById('mainBannerSelected').innerHTML;
+      //   $scope.maintext = document.getElementById('textSelected').innerHTML;
+      //   $scope.ctaImage = document.getElementById('ctaImageSelected').innerHTML;
+      //   $scope.closeButton = document.getElementById('closeButtonSelected').innerHTML;
 
-        $http.get('media/templates/veprompt/template0.html')
-        .then(function(res){
+      //   $http.get('media/templates/veprompt/template0.html')
+      //   .then(function(res){
 
-        var templateRes = _.template(res.data);
-        $scope.text  = templateRes({BANNERIMAGE:$scope.mainBanner,CTA:$scope.ctaImage,CLOSEBUTTON: $scope.closeButton,MAINTEXT: $scope.maintext});
-        console.log($scope.text);
-      })
-      };
+      //   var templateRes = _.template(res.data);
+      //   $scope.text  = templateRes({BANNERIMAGE:$scope.mainBanner,CTA:$scope.ctaImage,CLOSEBUTTON: $scope.closeButton,MAINTEXT: $scope.maintext});
+      //   console.log($scope.text);
+      // })
+      // };
 
 
         /************************
