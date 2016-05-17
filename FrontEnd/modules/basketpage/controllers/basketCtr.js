@@ -1,17 +1,38 @@
-angular.module('demo',['ui.bootstrap'])
-.controller('TabsDemoCtrl', function($scope,$http) {
-  $scope.tabs = [
-    { title:'Dynamic Title 1', content:'Dynamic content 1' },
-    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
-  ];
+angular.module('basketCrt',[])
+.controller('defaultValueBasket', function($scope,$http) {
 
-  $scope.alertMe = function() {
-    setTimeout(function() {
-      $window.alert('You\'ve selected the alert tab!');
-    });
-  };
 
-  $scope.model = {
-    name: 'Tabs'
-  };
+   /***************
+    Initialize previewBox
+  ***************/
+  document.getElementById("main").style.height = screen.height+"px";
+  document.querySelector(".configurationSettings").style.height = screen.height+"px";
+  document.querySelector(".previewBox").style.height = screen.height+"px";
+
+  /**************************
+    Menu
+  *************************/
+  $scope.singleModel = 1;
+
+  $scope.radioModel = 'Middle';
+
+  // $scope.checkModel = {
+  //   left: false,
+  //   middle: true,
+  //   right: false
+  // };
+
+  // $scope.checkResults = [];
+
+  // $scope.$watchCollection('checkModel', function () {
+  //   $scope.checkResults = [];
+  //   angular.forEach($scope.checkModel, function (value, key) {
+  //     if (value) {
+  //       $scope.checkResults.push(key);
+  //     }
+  //   });
+  // });
+
+
+
 });
