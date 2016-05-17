@@ -10,6 +10,16 @@
 				{"ctaText":"Buy Now"},
 				{"ctaColour":"rgba(255,255,255,1)"}
 			]
+		},
+		{	
+			"templates":
+			[
+				{"type":"1"},
+				{"promptBg":"http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/Back.png"},				
+				{"promptCTA":"http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/CTA.png"},
+				{"promptClose":"http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/Close.png"}
+
+			]
 		}
 		
 	],
