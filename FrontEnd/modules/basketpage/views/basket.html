@@ -1,14 +1,20 @@
-<div ng-controller="TabsDemoCtrl">
-	<uib-tabset active="active">
-    <uib-tab index="0" heading="Static title">Static content</uib-tab>
-    <uib-tab index="$index + 1" ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
-      {{tab.content}}
-    </uib-tab>
-    <uib-tab index="3" select="alertMe()">
-      <uib-tab-heading>
-        <i class="glyphicon glyphicon-bell"></i> Alert!
-      </uib-tab-heading>
-      I've got an HTML heading, and a select callback. Pretty cool!
-    </uib-tab>
-  </uib-tabset>
+<div ng-include='"mainPage/views/header.html"'></div>
+<div ng-controller="defaultValueBasket" id="main">
+  <div class="configurationSettings box col-md-4">
+    <div class="headerSettings">
+      <div class="btn-group">
+        <label class="btn btn-primary" ng-model="radioModel" ng-click="radioModel='left'">Left</label>
+        <label class="btn btn-primary" ng-model="radioModel" ng-click="radioModel='Middle'">Middle</label>
+        <label class="btn btn-primary" ng-model="radioModel" ng-click="radioModel='Right'">Right</label>
+      </div>
+    </div>
+    <div class="bodySettings">
+      {{radioModel}}
+    </div>
+  </div>
+  <div class="space box col-md-1"></div>
+  <div class="previewBox box col-md-7">
+    <div class="template">
+    </div>
+  </div>
 </div>
