@@ -9,9 +9,15 @@
       
         <div id="configurationSettings" class="box col-md-6">
          
-            <div ng-show="statusWizard == 'stepTwo'">
+            <div class="stepOneDiv">
               <div class="head">
-                <span>Settings</span><span class="glyphicon glyphicon-chevron-right"></span>
+                <div class="templatesButton">
+                  <button ng-click="changeStatusWizard()">
+                    <span class="glyphicon glyphicon-chevron-left" style="font-colour:#000000;"></span>Templates</button>
+                </div>
+                 <div class="header">
+                  <span>Settings</span>
+                </div>
               </div>
               <div id="accordionPrompt" class="accordion-test">
 
@@ -88,30 +94,29 @@
                     </div>
                   </div>
                 </div> <!-- Close Accordeon-->
-                 <div>
-                  <button class="templatesButton" ng-click="statusWizard=changeStatusWizard('stepOne')">
-                    <span class="glyphicon glyphicon-chevron-left" style="font-colour:#000000;"></span>Templates</button>
-                </div>
+                 
     	        <div>
-    	  			<!-- <button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button> -->
+    	  			<button id="saveCreactive" class="btn btn-primary" ng-click='savingFinalTemplate()'>Save This Creative</button>
     	        </div>
             </div><!--End StepTwoView-->
-            <div ng-show="statusWizard == 'stepOne'">
+            <div class="stepTwoDiv">
               <div class="head">
+                <div class="header">
                   <span>Templates</span><span class="glyphicon glyphicon-chevron-right"></span>
+                </div>
               </div> 
               <div id="shapes">
                 <div class="shapeDiv box col-md-6">
-                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="statusWizard=changeStatusWizard('stepTwo'); templateDisplayed('circle')">
+                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="changeStatusWizard(); templateDisplayed('circle')">
                 </div>
                 <div class="shapeDiv box col-md-6">
-                  <img class="shapeglyphicon" src="media/test/rombotest.png" ng-click="statusWizard=changeStatusWizard('stepTwo'); templateDisplayed('circle')">
+                  <img class="shapeglyphicon" src="media/test/rombotest.png" ng-click="changeStatusWizard(); templateDisplayed('circle')">
                 </div>
                 <div class="shapeDiv box col-md-6">
-                  <img class="shapeglyphicon" src="media/test/squaretest.png" ng-click="statusWizard=changeStatusWizard('stepTwo'); templateDisplayed('square')">
+                  <img class="shapeglyphicon" src="media/test/squaretest.png" ng-click="changeStatusWizard(); templateDisplayed('square')">
                 </div>
                 <div class="shapeDiv box col-md-6">
-                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="statusWizard=changeStatusWizard('stepTwo'); templateDisplayed('square')">
+                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="changeStatusWizard(); templateDisplayed('square')">
                 </div>
               </div>
             </div><!--End of stepOneView-->
