@@ -1,16 +1,32 @@
-<div ng-include='"mainPage/views/header.html"'></div>
-<div ng-controller="defaultValueBasket" id="main">
-  <div class="configurationSettings box col-md-4">
-    <div class="headerSettings">
-      <span class="headName">Shape</span>
+  <div ng-include='"mainPage/views/header.html"'></div>
+    <div  ng-cloak class="container-fluid" ng-controller="defaultValueBasket">
+      <!--ENd of main values-->
+      
+        <div id="configurationSettings" class="box col-md-6">
+
+            <div class="stepOneDiv">
+              <div class="head">
+                 <div class="test step1" ng-click="jose()">
+                  <span>Settings</span><span class="glyphicon glyphicon-chevron-right"></span>
+                 </div>
+              </div>
+              Jose
+            </div><!--End StepTwoView-->
+            <div class="stepTwoDiv">
+              <div class="head">
+                <div class="test step2" ng-click="jose()">
+                  <span>Templates</span><span class="glyphicon glyphicon-chevron-right"></span>
+                </div>
+              </div> 
+              <div id="shapes">
+                Rafa
+            </div><!--End of stepOneView-->
+          </div> <!-- Close Introduce box elements-->
+      </div>
+        <div class="col-md-1">
+        </div>
+        <div id="previewBox" class="box col-md-5" ng-show="true">
+         
+      </div>
+      
     </div>
-    <div class="bodySettings">
-      {{radioModel}}
-    </div>
-  </div>
-  <div class="space box col-md-1"></div>
-  <div class="previewBox box col-md-7">
-    <div class="template">
-    </div>
-  </div>
-</div>
