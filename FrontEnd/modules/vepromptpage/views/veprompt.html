@@ -27,7 +27,7 @@
                       </div>
                       <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                         <div class="panel-body">
-                            <div class="arrayImages" ng-repeat="x in arrayImagesBG" style="display:inline-block;">
+                            <div class="arrayImages" ng-repeat="x in arrayTypeTemplateBG" style="display:inline-block;">
                               <img ng-show="true" ng-src="{{x.source}}" width="150" height="150" ng-click="defaulvalues.bgImage=pickTheImageSource($index)"/>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                       </div>
                       <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
-                          <div class="arrayImages" ng-repeat="y in arrayImagesCTA" style="display:inline-block;">
+                          <div class="arrayImages" ng-repeat="y in arrayTypeTemplateCTA" style="display:inline-block;">
                               <img ng-show="true" ng-src="{{y.source}}" width="150" height="44" ng-click="defaulvalues.ctaImage=pickTheImageSourceCTA($index);"/>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                       </div>
                       <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                         <div class="panel-body">
-                          <div class="arrayImages" ng-repeat="z in arrayImagesClose" style="display:inline-block;">
+                          <div class="arrayImages" ng-repeat="z in arrayTypeTemplateClose" style="display:inline-block;"> 
                               <img ng-show="true" ng-src="{{z.source}}" width="20" height="20" ng-click="defaulvalues.closeImage=pickTheImageSourceClose($index); buttonDisabled()"/>
                             </div>
                         </div>
@@ -88,6 +88,10 @@
                     </div>
                   </div>
                 </div> <!-- Close Accordeon-->
+                 <div>
+                  <button class="templatesButton" ng-click="statusWizard=changeStatusWizard('stepOne')">
+                    <span class="glyphicon glyphicon-chevron-left" style="font-colour:#000000;"></span>Templates</button>
+                </div>
     	        <div>
     	  			<!-- <button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button> -->
     	        </div>
@@ -98,16 +102,16 @@
               </div> 
               <div id="shapes">
                 <div class="shapeDiv box col-md-6">
-                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="changeStatusWizard($index)">
+                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="statusWizard=changeStatusWizard('stepTwo'); templateDisplayed('circle')">
                 </div>
                 <div class="shapeDiv box col-md-6">
-                  <img class="shapeglyphicon" src="media/test/rombotest.png" ng-click="changeStatusWizard($index)">
+                  <img class="shapeglyphicon" src="media/test/rombotest.png" ng-click="statusWizard=changeStatusWizard('stepTwo'); templateDisplayed('circle')">
                 </div>
                 <div class="shapeDiv box col-md-6">
-                  <img class="shapeglyphicon" src="media/test/squaretest.png" ng-click="changeStatusWizard($index)">
+                  <img class="shapeglyphicon" src="media/test/squaretest.png" ng-click="statusWizard=changeStatusWizard('stepTwo'); templateDisplayed('square')">
                 </div>
                 <div class="shapeDiv box col-md-6">
-                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="changeStatusWizard($index)">
+                  <img class="shapeglyphicon" src="media/test/circleTest.png" ng-click="statusWizard=changeStatusWizard('stepTwo'); templateDisplayed('square')">
                 </div>
               </div>
             </div><!--End of stepOneView-->
@@ -115,7 +119,8 @@
         <div class="col-md-1">
         </div>
         <div id="previewBox" class="box col-md-5" ng-show="true">
-          <div class="promptBox" ng-templatevp></div>
+          <div class="promptBox" ng-show="shapeDisplay == 'circle'" ng-templatecircle></div>
+          <div class="promptBox" ng-show="shapeDisplay == 'square'" ng-templatesquare></div>
       </div>
       
     </div>
