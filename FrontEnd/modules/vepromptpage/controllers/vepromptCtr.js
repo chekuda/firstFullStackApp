@@ -6,6 +6,7 @@
 angular.module('vepromptctr',['colorpicker.module'])
     .controller('defaultValue',function($scope,$http){
 
+
       /*************************
       Initialize sizes of the boxes
       ***************************/
@@ -17,6 +18,7 @@ angular.module('vepromptctr',['colorpicker.module'])
         Initiazin variables of wizzard
       *************************/
       $scope.statusWizard = "stepOne";//Display always the step Shape onLoad page
+      $scope.shapeDisplay = "circle";//Default value for directive to display
 
       /*******************
         Initialize settings
@@ -94,10 +96,84 @@ angular.module('vepromptctr',['colorpicker.module'])
        /*************************
           Display Wizard Steps
        *************************/
-       $scope.changeStatusWizard = function(index)
+       $scope.changeStatusWizard = function(data)
        {
-        $scope.statusWizard = "stepTwo";
+        $scope.statusWizard = data;
+        return $scope.statusWizard
        }
+
+       /**********************
+        Displaying the templates depending of the first wizard step
+        @$scope.shapeDisplay: to change the directive to be displated
+        @typeTemplate: Used as variable to send to the function $scope.modifyArrayOfImages for modify the arrayofImages to be displayed
+       **********************/
+       $scope.templateDisplayed = function(data)
+       {
+          var typeTemplate = {
+            circle: "1",
+            square: "2",
+            rombo: "3",
+            triangle: "4"
+          };
+
+        $scope.shapeDisplay = data;//Display the directive depending of the template 
+        if(typeTemplate[data] == "2")
+        {
+         $scope.defaulvalues.bgImage = "http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/square/squaretest.png";
+         $scope.defaulvalues.ctaImage = "http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/square/CTA.png";
+         $scope.defaulvalues.closeImage = "http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/square/Close.png";
+         $scope.modifyArrayOfImages(typeTemplate[data]);
+        }
+        else if(typeTemplate[data] == "1")
+        {
+         $scope.defaulvalues.bgImage = "http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/Back.png";
+         $scope.defaulvalues.ctaImage = "http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/CTA.png";
+         $scope.defaulvalues.closeImage = "http://vemerchanthk.veinteractive.com/CustomerImages/D30730E7/D7C6/46D4/87A9/2410977B7915/veBuilder/2016/EN/default/Close.png";
+         $scope.modifyArrayOfImages(typeTemplate[data]);
+        }
+         
+       }
+
+       /**************************
+        Modify array depending of the templateDisplayed
+       *************************/
+
+       $scope.arrayTypeTemplateBG=[];//Object where save all the images depending of the template selected
+       $scope.arrayTypeTemplateCTA=[];//Object where save all the images depending of the template selected
+       $scope.arrayTypeTemplateClose=[];//Object where save all the images depending of the template selected
+
+       $scope.modifyArrayOfImages = function(typeTemplate)
+       { 
+        $scope.arrayTypeTemplateBG=[];//Remove all the bgImages for the last template selected
+        $scope.arrayTypeTemplateCTA=[];//Remove all the bgImages for the last template selected
+        $scope.arrayTypeTemplateClose=[];//Remove all the bgImages for the last template selected
+
+        //Loop for save all the matched object by the template selected BgImage
+        for(var i=0;i<$scope.arrayImagesBG.length;i++)
+        {
+          if($scope.arrayImagesBG[i].template == typeTemplate)
+          {
+           $scope.arrayTypeTemplateBG.push($scope.arrayImagesBG[i]); 
+          }
+        }
+        //Loop for save all the matched object by the template selected CTAImage
+        for(var i=0;i<$scope.arrayImagesCTA.length;i++)
+        {
+          if($scope.arrayImagesCTA[i].template == typeTemplate)
+          {
+           $scope.arrayTypeTemplateCTA.push($scope.arrayImagesCTA[i]); 
+          }
+        }
+        //Loop for save all the matched object by the template selected CloseImage
+         for(var i=0;i<$scope.arrayImagesClose.length;i++)
+        {
+          if($scope.arrayImagesClose[i].template == typeTemplate)
+          {
+           $scope.arrayTypeTemplateClose.push($scope.arrayImagesClose[i]); 
+          }
+        }
+       }
+
       
       /*************************************
       //   *Templates
@@ -132,15 +208,15 @@ angular.module('vepromptctr',['colorpicker.module'])
         **************************/
 
         $scope.pickTheImageSource =function(index){//saving the image clicked into the module to display into the preview
-          return $scope.arrayImagesBG[index].source;
+          return $scope.arrayTypeTemplateBG[index].source;
         };
 
         $scope.pickTheImageSourceCTA =function(index){//saving the image clicked into the module to display into the preview
-          return $scope.arrayImagesCTA[index].source;
+          return $scope.arrayTypeTemplateCTA[index].source;
         };
 
          $scope.pickTheImageSourceClose =function(index){//saving the image clicked into the module to display into the preview
-          return $scope.arrayImagesClose[index].source;
+          return $scope.arrayTypeTemplateClose[index].source;
         };
 
          /******************
@@ -155,8 +231,16 @@ angular.module('vepromptctr',['colorpicker.module'])
 /*************************
   **Using directive to load the HTML for vePrompt**
 ************************/
-.directive('ngTemplatevp', function(){
-  return {
+.directive('ngTemplatecircle', function(){
+    return {
     templateUrl: "const/templates/veprompt/template1.html"//returning the template 1
-  }
+    }
+  
+})
+
+.directive('ngTemplatesquare', function(){
+    return {
+    templateUrl: "const/templates/veprompt/template2.html"//returning the template 1
+    }
+  
 });
