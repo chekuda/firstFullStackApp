@@ -5,10 +5,11 @@ angular.module('basketCrt',[])
    /***************
     Initialize previewBox
   ***************/
-  document.getElementById("main").style.height = screen.height+"px";
-  document.querySelector(".configurationSettings").style.height = screen.height+"px";
-  document.querySelector(".previewBox").style.height = screen.height+"px";
 
+  $scope.jose = function(){
+    $(".stepOneDiv").toggleClass("laterOn");
+    $(".stepTwoDiv").toggleClass("laterOn");
+  }
   /**************************
     Menu
   *************************/
