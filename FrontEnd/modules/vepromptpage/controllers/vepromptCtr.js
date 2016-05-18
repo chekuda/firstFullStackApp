@@ -98,8 +98,8 @@ angular.module('vepromptctr',['colorpicker.module'])
        *************************/
        $scope.changeStatusWizard = function(data)
        {
-        $scope.statusWizard = data;
-        return $scope.statusWizard
+         $(".stepOneDiv").toggleClass("laterOn");
+         $(".stepTwoDiv").toggleClass("laterOn");
        }
 
        /**********************
@@ -144,6 +144,12 @@ angular.module('vepromptctr',['colorpicker.module'])
 
        $scope.modifyArrayOfImages = function(typeTemplate)
        { 
+        $scope.bgImageSelected=false;//Restarted the flag for the submitButton
+        $scope.ctaImageSelected=false;//Restarted the flag for the submitButton
+        $scope.closeImageSelected=false;//Restarted the flag for the submitButton
+
+
+
         $scope.arrayTypeTemplateBG=[];//Remove all the bgImages for the last template selected
         $scope.arrayTypeTemplateCTA=[];//Remove all the bgImages for the last template selected
         $scope.arrayTypeTemplateClose=[];//Remove all the bgImages for the last template selected
@@ -206,26 +212,43 @@ angular.module('vepromptctr',['colorpicker.module'])
           Display images on preview,
           scope the index of image
         **************************/
+        $scope.bgImageSelected=false;//Flag for bgImageSelected in order to active the submit button
+        $scope.ctaImageSelected=false;//Flag for bgImageSelected in order to active the submit button
+        $scope.closeImageSelected=false;//Flag for bgImageSelected in order to active the submit button
 
         $scope.pickTheImageSource =function(index){//saving the image clicked into the module to display into the preview
+          $scope.bgImageSelected=true;
           return $scope.arrayTypeTemplateBG[index].source;
         };
 
         $scope.pickTheImageSourceCTA =function(index){//saving the image clicked into the module to display into the preview
+          $scope.ctaImageSelected=true;
           return $scope.arrayTypeTemplateCTA[index].source;
         };
 
          $scope.pickTheImageSourceClose =function(index){//saving the image clicked into the module to display into the preview
+          $scope.closeImageSelected=true;
           return $scope.arrayTypeTemplateClose[index].source;
         };
 
          /******************
           *Button save Creative*
+          @ $scope.bgImageSelected: Flag for bgImageSelected in order to active the submit button
+          @ $scope.ctaImageSelected: Flag for bgImageSelected in order to active the submit button
+          @ $scope.closeImageSelected: Flag for bgImageSelected in order to active the submit button
+          @Function modifyArrayOfImages(): will restore the values as the client go to the step1 wizard
         **********************/
-        if($scope.arrayImagesBG.lenght !=0 && $scope.arrayImagesCTA.lenght && $scope.arrayImagesClose.lenght)//check when the client select all the properties of the template
-        {
-          $scope.avtiveButtonSaving ="true";
+        $scope.savingFinalTemplate = function(){
+          if($scope.bgImageSelected==true && $scope.ctaImageSelected==true && $scope.closeImageSelected==true)//check when the client select all the properties of the template
+          {
+            console.log("Everything is right");
+          }
+          else
+          {
+            alert("Please make you selected all the fields");
+          }
         }
+
 
   })
 /*************************
