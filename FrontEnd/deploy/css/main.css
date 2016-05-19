@@ -202,9 +202,20 @@ box-shadow: inset 0 0 0 5px #2A88E6;
     margin: 0 auto;
 }
 
-.shapeDiv{
-	display: inline-block;
+#shapes{
+	padding-top: 20px;
 }
+#shapes .shapeDiv{
+	display: inline-block;
+	cursor: pointer;
+    padding: 20px;
+    border: solid 1px #cccccc;
+    transition: all 0.3s ease 0s;
+}
+#shapes .shapeDiv:hover{
+	box-shadow: inset 0 0 0 5px #cccccc;
+}
+
 .shapeglyphicon{
 	height: 100px;
 	width: 100px;
