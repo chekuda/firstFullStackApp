@@ -7,9 +7,9 @@
     	<span ng-show="false" id="closeButtonSelected">{{closeImages.src}}</span>
     	<!--ENd of main values-->
       
-        <div id="configurationSettings" class="box col-md-6">
+        <div id="configurationSettings" class="box col-md-6 col-sm-6">
          
-            <div class="stepOneDiv">
+            <div class="step stepOneDiv">
               <div class="head">
                 <div class="templatesButton">
                   <button ng-click="changeStatusWizard()">
@@ -97,33 +97,34 @@
                  
     	        <div>
     	  			<button id="saveCreactive" class="btn btn-primary" ng-click='savingFinalTemplate()'>Save This Creative</button>
+              
     	        </div>
             </div><!--End StepTwoView-->
-            <div class="stepTwoDiv">
+            <div class="step stepTwoDiv">
               <div class="head">
                 <div class="header">
-                  <span>Templates</span><span class="glyphicon glyphicon-chevron-right"></span>
+                  <span>Templates</span>
                 </div>
               </div> 
               <div id="shapes">
-                <div class="shapeDiv box col-md-6" ng-click="changeStatusWizard(); templateDisplayed('circle')">
+                <div class="shapeDiv box col-md-6 col-sm-6" ng-click="changeStatusWizard(); templateDisplayed('circle')">
                   <img class="shapeglyphicon" src="media/test/circleTest.png">
                 </div>
-                <div class="shapeDiv box col-md-6" ng-click="changeStatusWizard(); templateDisplayed('circle')">
+                <div class="shapeDiv box col-md-6 col-sm-6" ng-click="changeStatusWizard(); templateDisplayed('circle')">
                   <img class="shapeglyphicon" src="media/test/rombotest.png">
                 </div>
-                <div class="shapeDiv box col-md-6" ng-click="changeStatusWizard(); templateDisplayed('square')">
+                <div class="shapeDiv box col-md-6 col-sm-6" ng-click="changeStatusWizard(); templateDisplayed('square')">
                   <img class="shapeglyphicon" src="media/test/squaretest.png">
                 </div>
-                <div class="shapeDiv box col-md-6" ng-click="changeStatusWizard(); templateDisplayed('square')">
+                <div class="shapeDiv box col-md-6 col-sm-6" ng-click="changeStatusWizard(); templateDisplayed('square')">
                   <img class="shapeglyphicon" src="media/test/circleTest.png">
                 </div>
               </div>
             </div><!--End of stepOneView-->
         </div> <!-- Close Introduce box elements-->
-        <div class="col-md-1">
+        <div class="col-md-1 col-sm-1">
         </div>
-        <div id="previewBox" class="box col-md-5" ng-show="true">
+        <div id="previewBox" class="box col-md-5 col-sm-5" ng-show="true">
           <div class="promptBox" ng-show="shapeDisplay == 'circle'" ng-templatecircle></div>
           <div class="promptBox" ng-show="shapeDisplay == 'square'" ng-templatesquare></div>
       </div>
