@@ -2,7 +2,7 @@
 
 body{
 	background-color: #fff !important;
-	font-family: arial;
+	font-family: 'din_otmedium';
 	width: 100%;
 	height: 100%;
 }
@@ -37,6 +37,52 @@ TEST
 	    overflow: hidden;
 }
 
+/************
+	*Basket*
+************/
+
+.basketBody.noItems
+{
+	padding: 30px;
+	font-size: 30px;
+}
+
+.basketBody .checkoutBtn{
+	padding-top: 20px;
+}
+.basketHeader{
+	padding: 20px;
+    text-align: left;
+    font-family: 'din_otmedium';
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.basketTable{
+	border-top: solid 1px #cccccc;
+    border-bottom: solid 1px #cccccc;
+}
+.basketTable .description{
+	padding-left: 30px;
+}
+.basketTable .productImage{
+		padding-bottom: 10px;
+		padding-top:10px;
+		text-align: left;
+}
+.basketTable .productImage.header{
+	padding-left: 40px;
+}
+.basketTable .glyphicon-remove
+{
+	cursor: pointer;
+}
+
+#mainBasket{
+	-webkit-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+	    -moz-box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+	    box-shadow: 0px 6px 12px 2px rgba(138,138,138,1);
+}
 
 
 /*****
@@ -130,10 +176,6 @@ TEST
 	*veContact*
 ***********************/
 
-#accordionContact{
-	padding: 20px;
-}
-
 #previewBoxContact{
 	overflow-y:auto;
 	 background-color: #F3F3F3;
@@ -220,14 +262,15 @@ box-shadow: inset 0 0 0 5px #2A88E6;
 	height: 100px;
 	width: 100px;
 }
-
+.step{
+	padding: 20px;
+}
 .stepTwoDiv{
 	position: absolute;
 	left: 0;
 	width: 100%;
 	-webkit-transition: 1s; 
     transition: 1s;
-    padding: 20px;
 }
 
 .stepOneDiv{
@@ -236,7 +279,6 @@ box-shadow: inset 0 0 0 5px #2A88E6;
 	width: 100%;
 	-webkit-transition: 1s; 
     transition:1s;
-    padding: 20px;
 }
 
 .stepTwoDiv.laterOn{
