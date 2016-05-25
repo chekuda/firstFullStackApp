@@ -8,7 +8,14 @@
     	<!--ENd of main values-->
       
 
-        <div id="configurationSettings" class="box col-md-4">
+        <div id="configurationSettings" class="box col-md-4 col-sm-4">
+          <div class="step">
+            <div class="head">
+                  <div class="header">
+                    <span>Settings</span>
+                  </div>
+                </div> 
+
             <div id="accordionContact" class="accordion-test">
 
               <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -24,7 +31,7 @@
                       <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                           
-                          <input type="file" name="myImage" image-with-preview ng-model="logoImage" accept="image/jpeg,image/png" dimensions="height < 100 && width < 327">
+                          <input type="file" name="myImage" image-with-preview ng-model="contactLogo" accept="image/jpeg,image/png" ng-click="logoSelected()">
                           <span class="error" ng-show="myImage.$error.image">Not a JPEG or a PNG!</span>
                           <span class="error" ng-show="myImage.$error.dimensions">
                             Invalid dimensions! Expecting an image smaller than 327x100.
@@ -94,7 +101,7 @@
                     </div>
                   </div>
                   <!--CTA-->
-                  <div class="panel panel-default">
+                  <!-- <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingFive">
                       <h4 class="panel-title">
                         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -112,18 +119,48 @@
                         <input colorpicker="rgba" type="text" ng-model="defaulvalues.ctaColour" style="background-color:{{resultObject.ctaColour}};" />
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                    
                   
               </div> <!-- Close Accordeon-->
   	        <div>
-  	  			<button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button>
+          </div>
+  	  			  <button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button>
+              <!--Success Modal-->
+              <div id="successModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                  <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body alert alert-success">
+                        <p>Your Template has been save successfuly</p>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <!--Error Modal-->
+              <div id="errorModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                  <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body alert alert-danger">
+                        <p>Please Check that your theme or Logo have been selected</p>
+                      </div>
+                    </div>
+                </div>
+              </div>
   	        </div>  
           </div> <!-- Close Introduce box elements-->
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 col-sm-1">
+          
         </div>
-        <div id="previewBoxContact" class="box col-md-7" ng-show="true">
+        <div id="previewBoxContact" class="box col-md-7 col-sm-7" ng-show="true">
           <div ng-templates></div>
 
            
