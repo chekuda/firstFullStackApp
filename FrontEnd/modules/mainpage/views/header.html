@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav navbar-right">
         <li ng-class="{active: isActive('/vecontact')}"><a ui-sref="vecontact">vecontact</a></li>
         <li ng-class="{active: isActive('/veprompt')}"><a ui-sref="veprompt">veprompt</a></li>
-        <li ng-class="{active: isActive('/basket')}"><a ui-sref="basket">basket</a></li>
+        <li ng-class="{active: isActive('/basket')}"><a ui-sref="basket"><span ng-if="numItemBasket>0">({{numItemBasket}})</span> basket</a></li>
         <li ng-class="{active: isActive('/token')}"><a ui-sref="token">token</a></li>
         <li ng-class="{active: isActive('/contactus')}"><a ui-sref="contactus">contactus</a></li>
         <!-- <li ng-class="{active: isActive('/login')}"><a ui-sref="login">login</a></li> -->
