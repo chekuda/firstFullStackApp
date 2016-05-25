@@ -24,17 +24,20 @@ angular.module('vecontactCtr',['colorpicker.module'])
         ctaText:"",//For CTA configuration settings
         ctaColour:"",//For CTA configuration settins
         // contactTemplate:"",//HTML template
-        contactLogo:"",//Default logo
+        // contactLogo:"",//Default logo
         contactTheme:"",//Main banners 
         // contactCTA:"",//for the CTA of vecontact
         contactBGcolour:""//for the whole template
       };
+      $scope.contactLogo = {
+        src:"http://vecontacthk.veinteractive.com/CustomerImages/D23E274C-F1C7-4E78-AEF7-47CAC0F5E23A/veBuilder/veContact/EN/electronic/contactelectronic0/VeContact_creative1_01.gif"
+      }
       $http.get('const/defaultValues.json')
       .success(function(res){
 
          $scope.resultObject.push(res);//Getting the data from the defaultJSONFile
          // $scope.defaulvalues.contactTemplate = $scope.resultObject[0].vecontactview[1].templates[1].htmlCode;//templateHTML
-         $scope.defaulvalues.contactLogo = $scope.resultObject[0].vecontactview[1].templates[1].contactLogo;//DefaultLogo
+         // $scope.defaulvalues.contactLogo = $scope.resultObject[0].vecontactview[1].templates[1].contactLogo;//DefaultLogo
          $scope.defaulvalues.contactTheme = $scope.resultObject[0].vecontactview[1].templates[2].contactTheme;//theme
 
          // document.getElementById("previewBoxContact").innerHTML += $scope.defaulvalues.contactTemplate;
@@ -121,15 +124,48 @@ angular.module('vecontactCtr',['colorpicker.module'])
       }
     $scope.pickTheme = function(pickedId)//Retrieving the id of the theme clicked
     {
+      $scope.themeSelected = true; //Flag for Theme selected
       for(var i=0; i<$scope.arrayImagesBG.length;i++)
       {
         if($scope.arrayImagesBG[i].id == pickedId)
         {
           console.log($scope.arrayImagesBG[i].source);
-          return $scope.arrayImagesBG[i].source;//retunr the path with the new
+          return $scope.arrayImagesBG[i].source;//return the path with the new
         }
       }
     }
+
+    //Flag for logo selected in order to saveTheTemplate function works
+    $scope.logoSelected = function()
+    {
+      $scope.logoUploaded = true;
+    }
+    /******************
+        *Button save Creative*
+        @ $scope.themeSelected: Flag for themeSelected in order to active the submit button
+        @ $scope.logoUploaded: Flag for logoUploaded in order to active the submit button
+      **********************/
+      $scope.themeSelected=false;
+      $scope.logoUploaded=false;
+
+      $scope.savingFinalTemplate = function(){
+        if($scope.themeSelected==true && $scope.logoUploaded==true)//check when the client select all the properties of the template
+        {
+          $("#successModal").modal("show");
+          if(!window.sessionStorage.getItem("veapps"))//if veapps is not already into the localstorage save it
+          {
+            window.sessionStorage.setItem("veapps","true");
+          }
+          if(!window.sessionStorage.getItem("vecontact"))//if veapps is not already into the localstorage save it
+          {
+            window.sessionStorage.setItem("vecontact","true");
+          }
+        }
+        else
+        {   
+          $("#errorModal").modal("show");
+        }
+      }
   })
 /*************************
   **Using directive to load the HTML for veContact**
@@ -138,4 +174,4 @@ angular.module('vecontactCtr',['colorpicker.module'])
   return {
     templateUrl: "const/templates/vecontact/template1.html"//returning the template 1
   }
-});
+})
