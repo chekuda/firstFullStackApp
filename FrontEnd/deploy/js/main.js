@@ -40,12 +40,16 @@
                      })
                      .error(function(data)
                      {
-                      //If the token is wrong this will redirect to the server
+                      //If the token is wrong this will redirect to the loginPage
                       location.pathname="/";
+                      window.sessionStorage.removeItem("veprompt");
+                      window.sessionStorage.removeItem("vecontact");
                      });
                    }
                    else{
                     location.pathname="/";
+                      window.sessionStorage.removeItem("veprompt");
+                      window.sessionStorage.removeItem("vecontact");
                     }
                 }
                 
@@ -118,7 +122,28 @@
         var active = (viewLocation === $location.path());
         return active;
       }
+
+      /****************************
+        Basket number
+      *************************/
+
+      $scope.numItemBasket = 0;
+      $scope.getNumerItemsForBasket = function(){//I need to upload this value onChange
+        var numItems = 0;
+        if(window.sessionStorage.getItem("veprompt"))
+        {
+          numItems++;
+        }
+        if(window.sessionStorage.getItem("vecontact"))
+        {
+          numItems++;
+        }
+        $scope.numItemBasket = numItems;
+      }()
     });
+
+    
+
 
 
 
