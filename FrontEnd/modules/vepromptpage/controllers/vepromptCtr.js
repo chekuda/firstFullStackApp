@@ -241,7 +241,15 @@ angular.module('vepromptctr',['colorpicker.module'])
         $scope.savingFinalTemplate = function(){
           if($scope.bgImageSelected==true && $scope.ctaImageSelected==true && $scope.closeImageSelected==true)//check when the client select all the properties of the template
           {
-            console.log("Everything is right");
+           console.log("Everything is right");
+            if(!window.sessionStorage.getItem("veapps"))//if veapps is not already into the localstorage save it
+            {
+              window.sessionStorage.setItem("veapps","true");
+            }
+             if(!window.sessionStorage.getItem("veprompt"))//if veapps is not already into the localstorage save it
+            {
+              window.sessionStorage.setItem("veprompt","true");
+            }
           }
           else
           {
