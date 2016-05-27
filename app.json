@@ -1,0 +1,14 @@
+{
+  "name": "veoptimiser",
+  "description": "Automation tool 2",
+  "version": "1.0.0",
+  "engines": {
+    "node": "4.4.2",
+    "npm": "2.15.0"
+  },
+  "scripts": {
+  "start": "node BackEnd/server.js",
+  "test": "mocha",
+  "postinstall": "bower install"
+	}
+}
