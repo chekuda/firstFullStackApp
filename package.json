@@ -1,0 +1,37 @@
+{
+  "name": "veoptimazer",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "description": "jason package",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^6.2.0",
+    "mysql": "^2.10.2",
+    "node-mysql": "^0.4.2",
+    "nodemon": "^1.9.1",
+    "passport": "^0.3.2"
+    },
+  "devDependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^6.2.0",
+    "mysql": "^2.10.2",
+    "node-mysql": "^0.4.2",
+    "nodemon": "^1.9.1",
+    "passport": "^0.3.2"
+  },
+  "keywords": [
+    "123456"
+  ],
+  "author": "Jose Luis Checa Exposito",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
