@@ -13,15 +13,15 @@ exports.login = function(req,res){
 	else{
 		//Conection with the DB
 		var con = mysql.createConnection({
-		  hostname: "localhost",
-		  user: "checa",
-		  password: "200288",
-		  database:"vebuilde_2"
+		  hostname: "eu-cdbr-azure-west-c.cloudapp.net",
+		  user: "bce64f7320c3cb",
+		  password: "30ec7bc5",
+		  database:"acsm_57c4ae9f2742a96"
 		});
 
 		con.connect(function(err){
 		  if(err){
-		    console.log(err);
+		    res.json({success:false,msg:err});
 		    return;
 		  }
 		  console.log('Connection established');
@@ -54,6 +54,7 @@ exports.login = function(req,res){
 			});
 
 			con.end(function(err) {
+				res.json({success:false,msg:"Conexion not working"});
 			  // The connection is terminated gracefully
 			  // Ensures all previously enqueued queries are still
 			  // before sending a COM_QUIT packet to the MySQL server.
