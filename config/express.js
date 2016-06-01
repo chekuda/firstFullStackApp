@@ -23,6 +23,11 @@ module.exports= function(app){
 	app.use('/api',ctrUsers.listFunctions);
 	app.use('/api',ctrimages.listFunctionImg);
 
+	//error function
+	app.use(function(err, req, res, next) {
+	  console.error(err.stack);
+	  res.status(500).send('Something broke!');
+	});
 
 
 	//Loading the index Page when run the server
