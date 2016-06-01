@@ -21,7 +21,7 @@ exports.login = function(req,res){
 
 		con.connect(function(err){
 		  if(err){
-		    res.json({success:false,msg:err});
+		    res.json({success:false,msg:err,manualError:"Not connected"});
 		    return;
 		  }
 		  console.log('Connection established');
