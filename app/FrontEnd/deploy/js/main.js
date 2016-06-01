@@ -15,43 +15,43 @@
     //Runing this controller before the page is loaded. Dependencies=>@Token and @needAuth
     app.run(['$rootScope', '$state','$location','$window','$http', function ($rootScope, $state, $location, $window, $http) {
             $rootScope.$on('$stateChangeStart', function (event, toState) {
-                // var auth = toState.needAuth;
-                // var administrator = $window.sessionStorage.getItem("admin");
-                // var url = toState.url;
-                // if(auth)//if the client need authentication
-                // {
+                var auth = toState.needAuth;
+                var administrator = $window.sessionStorage.getItem("admin");
+                var url = toState.url;
+                if(auth)//if the client need authentication
+                {
                     
-                //   if($window.sessionStorage.getItem("token"))
-                //    {
-                //     //This will give value to the token from sessionStore
-                //      var token = {token: window.sessionStorage.getItem("token")};
-                //     //Calling to the server to check it the token is right
-                //      $http.post('/api/auth',token)
-                //      .success(function(data){
-                //       console.log()
-                //         if(administrator=="false" && url == "/uimages")//forbiden access for not administrator
-                //         {
-                //           location.pathname="/home";
-                //         }
-                //         if(location.pathname=="/login")//if the client is authenticated and he/she request login page, this redirect to home page
-                //         {
-                //          location.pathname="/home";
-                //         }
-                //      })
-                //      .error(function(data)
-                //      {
-                //       //If the token is wrong this will redirect to the loginPage
-                //       location.pathname="/";
-                //       window.sessionStorage.removeItem("veprompt");
-                //       window.sessionStorage.removeItem("vecontact");
-                //      });
-                //    }
-                //    else{
-                //     location.pathname="/";
-                //       window.sessionStorage.removeItem("veprompt");
-                //       window.sessionStorage.removeItem("vecontact");
-                //     }
-                // }
+                  if($window.sessionStorage.getItem("token"))
+                   {
+                    //This will give value to the token from sessionStore
+                     var token = {token: window.sessionStorage.getItem("token")};
+                    //Calling to the server to check it the token is right
+                     $http.post('/api/auth',token)
+                     .success(function(data){
+                      console.log()
+                        if(administrator=="false" && url == "/uimages")//forbiden access for not administrator
+                        {
+                          location.pathname="/home";
+                        }
+                        if(location.pathname=="/login")//if the client is authenticated and he/she request login page, this redirect to home page
+                        {
+                         location.pathname="/home";
+                        }
+                     })
+                     .error(function(data)
+                     {
+                      //If the token is wrong this will redirect to the loginPage
+                      location.pathname="/";
+                      window.sessionStorage.removeItem("veprompt");
+                      window.sessionStorage.removeItem("vecontact");
+                     });
+                   }
+                   else{
+                    location.pathname="/";
+                      window.sessionStorage.removeItem("veprompt");
+                      window.sessionStorage.removeItem("vecontact");
+                    }
+                }
                 
             });
         }]);
@@ -64,7 +64,7 @@
 
     app.config(function($stateProvider, $urlRouterProvider,$locationProvider)//Router
     {
-      //$urlRouterProvider.otherwise("/home");
+      $urlRouterProvider.otherwise("/home");
 
       $stateProvider
         .state('login',{
