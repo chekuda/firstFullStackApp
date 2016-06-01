@@ -34,7 +34,7 @@
           }
         })
         .error(function(data){
-          console.log('Error: api no working'+ data);
+          console.log('Error: api no working cos '+ data);
         });
       };
     });
