@@ -37,6 +37,5 @@
           console.log('Error: api no working cos '+ data.msg);
           console.log('Error: api no working cos '+ data.manualError);
         });
-        });
       };
     });
