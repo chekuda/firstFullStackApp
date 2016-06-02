@@ -3,10 +3,10 @@ var mysql = require("mysql");
 exports.getimg = function (req,res) {
 	//conextion to the DDBB
 	var con = mysql.createConnection({
-		  hostname: "localhost",
-		  user: "checa",
-		  password: "200288",
-		  database:"vebuilde_2"
+		  host: "eu-cdbr-azure-west-c.cloudapp.net",
+		  user: "bce64f7320c3cb",
+		  password: "30ec7bc5",
+		  database:"acsm_57c4ae9f2742a96"
 		});
 
 		con.connect(function(err){

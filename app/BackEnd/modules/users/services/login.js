@@ -19,6 +19,14 @@ exports.login = function(req,res){
 		  database:"acsm_57c4ae9f2742a96"
 		});
 
+		//Local connection
+		// var con = mysql.createConnection({
+		//   hostname: "localhost",
+		//   user: "checa",
+		//   password: "200288",
+		//   database:"vebuilde_2"
+		// });
+
 		con.connect(function(err){
 		  if(err){
 		    res.json({success:false,msg:err,manualError:"Not connected"});
