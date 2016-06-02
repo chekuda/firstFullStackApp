@@ -13,7 +13,7 @@ exports.login = function(req,res){
 	else{
 		//Conection with the DB
 		var con = mysql.createConnection({
-		  hostname: "127.0.0.1",
+		  host: "eu-cdbr-azure-west-c.cloudapp.net",
 		  user: "bce64f7320c3cb",
 		  password: "30ec7bc5",
 		  database:"acsm_57c4ae9f2742a96"
