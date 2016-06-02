@@ -1,11 +1,11 @@
     <div ng-include='"mainPage/views/header.html"'></div>
     <div  ng-cloak class="container-fluid" ng-controller="defaultValueContact">
-    	<!--Main values-->
-    	<span ng-show="false" id="mainBannerSelected">{{defaulvalues.contactLogo}}</span>
-    	<span ng-show="false" id="textSelected"></span>
-    	<span ng-show="false" id="ctaImageSelected" style="background-color: "></span>
-    	<span ng-show="false" id="closeButtonSelected"></span>
-    	<!--ENd of main values-->
+      <!--Main values-->
+      <span ng-show="false" id="mainBannerSelected">{{defaulvalues.contactLogo}}</span>
+      <span ng-show="false" id="textSelected"></span>
+      <span ng-show="false" id="ctaImageSelected" style="background-color: "></span>
+      <span ng-show="false" id="closeButtonSelected"></span>
+      <!--ENd of main values-->
       
 
         <div id="configurationSettings" class="box col-md-4 col-sm-4">
@@ -30,13 +30,16 @@
                       </div>
                       <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                          
-                          <input type="file" name="myImage" image-with-preview ng-model="contactLogo" accept="image/jpeg,image/png" ng-click="logoSelected()">
-                          <span class="error" ng-show="myImage.$error.image">Not a JPEG or a PNG!</span>
-                          <span class="error" ng-show="myImage.$error.dimensions">
-                            Invalid dimensions! Expecting an image smaller than 327x100.
-                          </span>
+                          <form name="myForm" class="myForm">
+                          <input id="imgButton" type="file" name="myImage" image-with-preview ng-model="contactLogo" accept="image/jpeg,image/png" dimensions="width < 330 && height <110" ng-click="logoSelected()" >
+                          <span class="error" ng-show="myForm.myImage.$error.image">Not a JPEG or a PNG!</span>
+                          <div class="error" ng-if="myForm.myImage.$error.dimensions">
+                            <p class="wrongSize">
+                              Invalid dimensions! Expecting an image smaller than 327x100.
+                            </p>
+                          </div>
                           <p><small>Note: Image should be smaller than 327Hx100W</small></p>
+                        </form>
                         </div>
                       </div>
                   </div>
@@ -123,9 +126,9 @@
                    
                   
               </div> <!-- Close Accordeon-->
-  	        <div>
+            <div>
           </div>
-  	  			  <button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button>
+              <button id="saveCreactive" class="btn btn-primary" ng-disabled="avtiveButtonSaving" ng-click='savingFinalTemplate()'>Save This Creative</button>
               <!--Success Modal-->
               <div id="successModal" class="modal fade" role="dialog">
                   <div class="modal-dialog">
@@ -154,7 +157,7 @@
                     </div>
                 </div>
               </div>
-  	        </div>  
+            </div>  
           </div> <!-- Close Introduce box elements-->
         </div>
         <div class="col-md-1 col-sm-1">
