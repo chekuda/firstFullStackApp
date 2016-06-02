@@ -97,7 +97,34 @@
                  
     	        <div>
     	  			<button id="saveCreactive" class="btn btn-primary" ng-click='savingFinalTemplate()'>Save This Creative</button>
-              
+              <!--Success Modal-->
+              <div id="successModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                  <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body alert alert-success">
+                        <p>Your Template has been save successfuly</p>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <!--Error Modal-->
+              <div id="errorModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                  <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body alert alert-danger">
+                        <p>Please Check that your theme or Logo have been selected</p>
+                      </div>
+                    </div>
+                </div>
+              </div>
     	        </div>
             </div><!--End StepTwoView-->
             <div class="step stepTwoDiv">
