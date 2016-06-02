@@ -221,6 +221,14 @@ box-shadow: inset 0 0 0 5px #2A88E6;
 	display: inline-block;
 }
 
+.myForm .wrongSize{
+	color: red;
+}
+
+.myForm #imgButton{
+	padding: 20px;
+}
+
 .panel .panel-heading{
 	background-image: -webkit-linear-gradient(top, #3D6D9D 0, #3D6D9D 100%);
     background-image: -o-linear-gradient(top, #3D6D9D 0, #3D6D9D 100%);
@@ -308,6 +316,8 @@ box-shadow: inset 0 0 0 5px #2A88E6;
     position: absolute;
     left: 5%;
 }
+
+
 /******End vePrompt*****/
 
 
