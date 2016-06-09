@@ -14,13 +14,14 @@ exports.getimg = function (req,res) {
 		    console.log(err);
 		    return;
 		  }
-		  console.log('Connection established');
+		  else
+		  {
+		  	console.log('Connection established');
+		  	con.query("SELECT * FROM imgtool", function(err,rows)
+			{
+				res.send(rows);
+			});	
+		  }
+		 
 		});
-	if(con)
-	{
-		con.query("SELECT * FROM imgtool", function(err,rows)
-		{
-			res.send(rows);
-		});
-	}
 }

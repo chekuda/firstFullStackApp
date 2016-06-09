@@ -32,12 +32,10 @@ exports.login = function(req,res){
 		    res.json({success:false,msg:err,manualError:"Not connected"});
 		    return;
 		  }
-		  console.log('Connection established');
-		});
-
-		if(con)
-		{
-			//Query to get the Row by USERNAME
+		  else
+		  {
+		  	console.log('Connection established');
+		  	//Query to get the Row by USERNAME
 			con.query("SELECT * FROM users WHERE username = ?", req.body.username, function(err,rows){
 			  if(err) throw err;
 
@@ -62,12 +60,15 @@ exports.login = function(req,res){
 			});
 
 			con.end(function(err) {
-				res.json({success:false,msg:"Conexion not working"});
 			  // The connection is terminated gracefully
 			  // Ensures all previously enqueued queries are still
 			  // before sending a COM_QUIT packet to the MySQL server.
 			});
-		};
+			
+		  }
+		  
+		});
+
 	}
 	
-};
+}

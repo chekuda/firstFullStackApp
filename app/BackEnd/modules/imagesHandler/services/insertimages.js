@@ -17,38 +17,39 @@ exports.insert = function (req,res) {
 		});
 
 		con.connect(function(err){
-		  if(err){
+		  if(err)
+		  {
 		    console.log(err);
 		    return;
 		  }
-		  console.log('Connection established');
-		});
-	if(con)
-	{
-		if(req.body.appName && req.body.template && req.body.sector && req.body.typeimage && req.body.source)
-		{
-			
-			
-			con.query("INSERT INTO imgtool SET ?", req.body, function(err,result)
+		  else
+		  {
+		  	console.log('Connection established');
+			if(req.body.appName && req.body.template && req.body.sector && req.body.typeimage && req.body.source)
 			{
-				if(err) throw err;
+				con.query("INSERT INTO imgtool SET ?", req.body, function(err,result)
+				{
+					if(err) throw err;
 
-				console.log(result);
+					console.log(result);
 
-				res.json({
-					success:true,
-					msg:"Image Inserted successfully",
-					alertStatus: "alert-success"
+					res.json({
+						success:true,
+						msg:"Image Inserted successfully",
+						alertStatus: "alert-success"
+					});
 				});
-			});
-		}
-		else
-		{
-			res.json({
-				success: false,
-				msg: "Image has not been inserted",
-				alertStatus: "alert-danger"
-			})
-		}
-	}
+			}
+			else
+			{
+				res.json({
+					success: false,
+					msg: "Image has not been inserted",
+					alertStatus: "alert-danger"
+				})
+			}
+
+		  }
+		});
+	
 };
