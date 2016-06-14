@@ -11,43 +11,54 @@
                    <div >Product</div>
                 </div>
                 <div class="productToken header col-md-2 col-sm-2">
-                   <div>Token</div>
+                   <div>Delete</div>
                 </div>
                 <div class="productToken header col-md-3 col-sm-3">
-                   <div>Delete</div>
+                   <div>Token</div>
                 </div>
                 <div ng-repeat="v in veapps">
                   <div class="productImage rowItem col-md-7 col-sm-7" >
                      <img ng-src="{{v.imgURL}}" width="100" height="100"> <span class="description">{{v.description}}</span>
                   </div>
                   <div class="productToken item rowItem col-md-2 col-sm-2">
-                     {{v.token}}
+                      <span class="glyphicon glyphicon-remove" ng-click="deleteItem(v.type)"></span>
                   </div>
                   <div class="productToken item rowItem col-md-3 col-sm-3">
-                     <span class="glyphicon glyphicon-remove" ng-click="deleteItem(v.type)"></span>
+                    {{v.token}}
                   </div>
                 </div>
             </div>
             <div class="row rowItem">
             <div class="total col-md-7 col-sm-7">
-                <div class="sonTotal">Total Basket:</div> 
+                
               </div>
               <div class="productToken col-md-2 col-sm-2">
-                <div class="sonTotal">2</div> 
+                <div class="sonTotal">Total Basket:</div> 
               </div>
               <div class="productToken col-md-3 col-sm-3">
-                
+                <div class="sonTotal">{{totalBasket}}</div> 
               </div>
             </div>
             <div class="row rowItem">
               <div class="total col-md-7 col-sm-7">
-             <div class="sonTotal">Total Tokens:</div> 
+             
               </div>
               <div class="productToken col-md-2 col-sm-2">
-                <div class="sonTotal">1</div> 
+                <div class="sonTotal">Tokens Remainded:</div> 
               </div>
-              <div class="productToken col-md-3 col-sm-3 checkoutBtn">
-                <button class="btn btn-primary sonTotal">Checkout</button>
+              <div class="productToken col-md-3 col-sm-3">
+                <div class="sonTotal">{{totalToken}}</div> 
+              </div>
+            </div>
+            <div class="row rowItem">
+              <div class="productToken col-md-9 col-sm-9"></div>
+              <!--If basket is less or equal than token-->
+              <div  class="productToken col-md-3 col-sm-3 checkoutBtn" ng-if="totalToken>=totalBasket">
+                <button class="btn personalBtn sonTotal" ng-click="openModal()">Confirm</button>
+              </div>
+                 <!--If basket is more than token-->
+              <div  class="productToken col-md-3 col-sm-3 checkoutBtn" ng-if="totalToken<totalBasket">
+                <button class="btn personalBtn sonTotal" ng-click="openModal()">Top Up</button>
               </div>
             </div>
           </div>
@@ -57,7 +68,48 @@
           </div>
       </div>
       <div class="box col-md-1 col-sm-1 col-xs-1"></div>
+
+   <!-- START Payment Modal -->
+      <div id="paymentModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              <ul class="nav nav-tabs nav-justified">
+                <li class="active paymentMenu"><a data-toggle="tab" data-target="#increateTokens">Tokens</a></li>
+                <li class="paymentMenu"><a data-toggle="tab" data-target="#cardpayment" ng-click="updateTotalTokensPay()">Payment</a></li>
+              </ul>
+            </div>
+            <div class="modal-body">
+              <div class="tab-content">
+                <div id="increateTokens" class="tab-pane fade in active">
+                  <div id="quantityTokens">
+                    <span>{{preToken}} x {{preToken}}00 HKD</span>
+                  </div>
+                  <div class="modifyQuantity">
+                    <div id="increase" class="sumButton"><span class="glyphicon glyphicon-plus" ng-click="modidfyToken('increase')"></span></div>
+                    <div id="decrease" class="sumButton"><span class="glyphicon glyphicon-minus" ng-click="modidfyToken('decrease')"></span></div>
+                  </div>
+                </div>
+                <div id="cardpayment" class="tab-pane fade in">
+                  <div ng-paymentemplate></div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- END Payment Modal -->
+
     </div>
+
+ 
 
 
 
