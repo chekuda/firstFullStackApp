@@ -1,10 +1,12 @@
 /****************
 
   Controller for vePrompt tool
-
+  
+  @numItemsMenuBasket is the factory
+  @$rootScope will be used for send scope values from different controllers
 ***************/
 angular.module('vepromptctr',['colorpicker.module'])
-    .controller('defaultValue',function($scope,$http){
+    .controller('defaultValue',function($scope,$http,$rootScope,numItemsMenuBasket){
 
 
       /*************************
@@ -242,14 +244,8 @@ angular.module('vepromptctr',['colorpicker.module'])
           if($scope.bgImageSelected==true && $scope.ctaImageSelected==true && $scope.closeImageSelected==true)//check when the client select all the properties of the template
           {
            $("#successModal").modal("show");
-            if(!window.sessionStorage.getItem("veapps"))//if veapps is not already into the localstorage save it
-            {
-              window.sessionStorage.setItem("veapps","true");
-            }
-             if(!window.sessionStorage.getItem("veprompt"))//if veapps is not already into the localstorage save it
-            {
-              window.sessionStorage.setItem("veprompt","true");
-            }
+            //I send the information to the Receive function and this function will save values on the sessionStorage and modify the menuNumberValue
+            $rootScope.$emit('updateBasket',"veprompt");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
           }
           else
           {
