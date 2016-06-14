@@ -116,31 +116,93 @@
 
     /*********************
       *NavBar active configuration
+      @numItemsMenuBasket is the factory
+      @$rootScope will be used for send scope values from different controllers
     *********************/
-    app.controller('navCntr',function($scope,$location){
+    app.controller('navCntr',function($scope,$location,$rootScope,numItemsMenuBasket){
+
+       $scope.numItemBasket = numItemsMenuBasket.getValue();
       $scope.isActive = function(viewLocation){
         var active = (viewLocation === $location.path());
         return active;
       }
 
-      /****************************
-        Basket number
-      *************************/
+      //Funtion to update the value of the number in Menu Basket when new app is saved
+      $rootScope.$on("updateBasket",function(event,data){
 
-      $scope.numItemBasket = 0;
-      $scope.getNumerItemsForBasket = function(){//I need to upload this value onChange
-        var numItems = 0;
+          if(data == "veprompt" || data == "vecontact")//calling from veprormpt or Vecontact controller
+          {
+               if(!window.sessionStorage.getItem("veapps"))//if veapps is not already into the localstorage save it
+                {
+                  window.sessionStorage.setItem("veapps","true");
+                }
+                 if(!window.sessionStorage.getItem(data))//if veapps is not already into the localstorage save it
+                {
+                  window.sessionStorage.setItem(data,"true");
+                  numItemsMenuBasket.addItem(data);//Calling the factory and save this value if not already 
+                }
+          }
+
+        $scope.numItemBasket = numItemsMenuBasket.getValue();//Showing the value on the Menu
+      });
+
+
+      /****************************
+        Basket number onLoad
+      *************************/
+      $scope.getNumerItemsForBasket = function(){
         if(window.sessionStorage.getItem("veprompt"))
         {
-          numItems++;
+              numItemsMenuBasket.addItem("veprompt");//Calling the factory and save this value if not already 
+              $rootScope.$emit('updateBasket',"onloadFunction");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
         }
         if(window.sessionStorage.getItem("vecontact"))
         {
-          numItems++;
+              numItemsMenuBasket.addItem("vecontact");//Calling the factory and save this value if not already 
+              $rootScope.$emit('updateBasket',"onloadFunction");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
         }
-        $scope.numItemBasket = numItems;
       }()
     });
+
+    /*********************
+      *Menu basket updating number factory
+      @value will be veprompt or vecontact
+      @itemBasket will be the one which control the amount of items in basket
+    *********************/
+
+    app.factory('numItemsMenuBasket', function(){
+      var itemBasket = [];
+      var n= 0;//I will use this as a flag to push into the variable
+      return {
+        getValue: function()
+          {
+            return itemBasket.length;  
+          },
+          addItem: function(value)
+          {
+            if(itemBasket.length == 0)
+            {
+              itemBasket.push(value);
+            }
+            else
+            {
+              for(var i=0; i<itemBasket.length; i++)
+              {
+                if(itemBasket[i] == value)
+                {
+                   n++;
+                }
+              }
+              if(n==0)
+              {
+                itemBasket.push(value);
+              }
+              
+            }
+            n=0; 
+          }
+      }
+    })
 
     
 
