@@ -1,10 +1,11 @@
 /****************
 
   Controller for vePrompt tool
-
+   @numItemsMenuBasket is the factory
+   @$rootScope will be used for send scope values from different controllers
 ***************/
 angular.module('vecontactCtr',['colorpicker.module'])
-    .controller('defaultValueContact',function($scope,$http){
+    .controller('defaultValueContact',function($scope,$http,numItemsMenuBasket,$rootScope){//Using numItems as a factory from mainJS for updating the basket number
 
 
       /***************
@@ -129,7 +130,7 @@ angular.module('vecontactCtr',['colorpicker.module'])
       {
         if($scope.arrayImagesBG[i].id == pickedId)
         {
-          console.log($scope.arrayImagesBG[i].source);
+          // console.log($scope.arrayImagesBG[i].source);
           return $scope.arrayImagesBG[i].source;//return the path with the new
         }
       }
@@ -152,14 +153,8 @@ angular.module('vecontactCtr',['colorpicker.module'])
         if($scope.themeSelected==true && $scope.logoUploaded==true)//check when the client select all the properties of the template
         {
           $("#successModal").modal("show");
-          if(!window.sessionStorage.getItem("veapps"))//if veapps is not already into the localstorage save it
-          {
-            window.sessionStorage.setItem("veapps","true");
-          }
-          if(!window.sessionStorage.getItem("vecontact"))//if veapps is not already into the localstorage save it
-          {
-            window.sessionStorage.setItem("vecontact","true");
-          }
+          //I send the information to the Receive function and this function will save values on the sessionStorage and modify the menuNumberValue
+          $rootScope.$emit('updateBasket',"vecontact");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
         }
         else
         {   
