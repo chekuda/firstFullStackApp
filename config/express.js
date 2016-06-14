@@ -7,6 +7,8 @@ var path = require('path');
 var routes = require('../app/BackEnd/modules/users/routes/routes');
 var ctrUsers = require('../app/BackEnd/modules/users/controllers/controllers');
 var ctrimages = require('../app/BackEnd/modules/imagesHandler/controllers/controllers');
+var ctrpay = require('../app/BackEnd/modules/payment/controllers/controller');
+
 
 
 
@@ -22,6 +24,7 @@ module.exports= function(app){
 	//Middlewares
 	app.use('/api',ctrUsers.listFunctions);
 	app.use('/api',ctrimages.listFunctionImg);
+	app.use('/api',ctrpay.listFunctionspay);
 
 	//error function
 	app.use(function(err, req, res, next) {
