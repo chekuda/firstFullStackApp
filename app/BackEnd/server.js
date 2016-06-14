@@ -7,6 +7,7 @@ var path = require('path');
 var routes = require('./modules/users/routes/routes');
 var ctrUsers = require('./modules/users/controllers/controllers');
 var ctrimages = require('./modules/imagesHandler/controllers/controllers');
+var ctrpay = require('./modules/payment/controllers/controller');
 
 
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, '..') + '/FrontEnd/modules/'));
 //Middlewares
 app.use('/api',ctrUsers.listFunctions);
 app.use('/api',ctrimages.listFunctionImg);
+app.use('/api',ctrpay.listFunctionspay);
 
 
 
