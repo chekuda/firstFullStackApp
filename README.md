@@ -23,11 +23,18 @@
 					-Services
 						a- getOmagesfromdb: Request all the images from the DB(Front end will filter them up)
 						b- insertimages: API for administrator upload images into the DB.
+				3-payment(paypal):
+					-Controllers
+						a- Middlewares for route the services
+					-Services
+						a- executepayment: for execute the payment after the aprovation of the client
+						b- paymentbypaypal: create a payment
 			
 	- NPM
 		1- Installing the modules
 	- Express
 		1- Server required
+		2- Request required
 	- MYSQL
 		1- DB (inserted into the services)
 	- NodeMon
