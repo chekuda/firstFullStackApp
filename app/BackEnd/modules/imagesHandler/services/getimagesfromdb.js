@@ -8,6 +8,13 @@ exports.getimg = function (req,res) {
 		  password: "30ec7bc5",
 		  database:"acsm_57c4ae9f2742a96"
 		});
+	// //Local connection
+	// 	var con = mysql.createConnection({
+	// 	  hostname: "localhost",
+	// 	  user: "checa",
+	// 	  password: "200288",
+	// 	  database:"vebuilde_2"
+	// 	});
 
 		con.connect(function(err){
 		  if(err){
@@ -17,7 +24,7 @@ exports.getimg = function (req,res) {
 		  else
 		  {
 		  	console.log('Connection established');
-		  	con.query("SELECT * FROM imgtool", function(err,rows)
+		  	con.query("SELECT * FROM theme_assets", function(err,rows)
 			{
 				res.send(rows);
 			});	
