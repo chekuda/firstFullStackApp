@@ -72,7 +72,7 @@ angular.module('vecontactCtr',['colorpicker.module'])
         $http.get("/api/getimg")
         .success(function(data){
             $.each(data, function(key,values){
-              if(data[key].appName == "veContact")
+              if(data[key].app_name == "veContact")
               {
                 if(data[key].typeimage == "background")
                 {
@@ -128,10 +128,10 @@ angular.module('vecontactCtr',['colorpicker.module'])
       $scope.themeSelected = true; //Flag for Theme selected
       for(var i=0; i<$scope.arrayImagesBG.length;i++)
       {
-        if($scope.arrayImagesBG[i].id == pickedId)
+        if($scope.arrayImagesBG[i].idtheme_assets == pickedId)
         {
           // console.log($scope.arrayImagesBG[i].source);
-          return $scope.arrayImagesBG[i].source;//return the path with the new
+          return $scope.arrayImagesBG[i].url;//return the path with the new
         }
       }
     }
@@ -153,8 +153,19 @@ angular.module('vecontactCtr',['colorpicker.module'])
         if($scope.themeSelected==true && $scope.logoUploaded==true)//check when the client select all the properties of the template
         {
           $("#successModal").modal("show");
-          //I send the information to the Receive function and this function will save values on the sessionStorage and modify the menuNumberValue
-          $rootScope.$emit('updateBasket',"vecontact");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
+          for(var i=0; i<$scope.arrayImagesBG.length;i++)
+          {
+            if($scope.defaulvalues.contactTheme == $scope.arrayImagesBG[i].url)
+            {
+              //I send the information to the Receive function and this function will save values on the sessionStorage and modify the menuNumberValue
+              $rootScope.$emit('updateBasket',"vecontact");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
+              var veContacTheme = {"themeAsset": $scope.arrayImagesBG[i].idtheme_assets, "textvecontactA": $scope.defaulvalues.defaulTextmain, "textvecontactB": $scope.defaulvalues.defaulTextbottom};
+              window.sessionStorage.setItem("veContacTheme",JSON.stringify(veContacTheme));
+               
+            }
+          }
+          
+         
         }
         else
         {   
