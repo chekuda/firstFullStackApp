@@ -19,7 +19,7 @@ exports.login = function(req,res){
 		  database:"acsm_57c4ae9f2742a96"
 		});
 
-		//Local connection
+		// //Local connection
 		// var con = mysql.createConnection({
 		//   hostname: "localhost",
 		//   user: "checa",
@@ -36,7 +36,7 @@ exports.login = function(req,res){
 		  {
 		  	console.log('Connection established');
 		  	//Query to get the Row by USERNAME
-			con.query("SELECT * FROM users WHERE username = ?", req.body.username, function(err,rows){
+			con.query("SELECT * FROM client WHERE company_name = ?", req.body.username, function(err,rows){
 			  if(err) throw err;
 
 			  if(rows.length != 0)
@@ -45,7 +45,7 @@ exports.login = function(req,res){
 			  	if(rows[0].password == req.body.password)
 			  	{
 			  		var token = createToken.tokenCreated(req.body.username);//saving the new token for this user on var token
-			  		res.json({success:true,token: token,admin:false,msg:"User logged"});
+			  		res.json({success:true,token: token,admin:false,msg:"User logged",clientId: rows[0].idclient});
 			  	}
 			  	else{
 			  		//Password falied
