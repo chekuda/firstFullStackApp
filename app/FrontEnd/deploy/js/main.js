@@ -5,7 +5,7 @@
       @vecontactCtr: veContact tool controller module
     **/
 
-    var app = angular.module('veoptimazer', ['ngImageInputWithPreview','ui.router','textAngular','ngRoute','ngAnimate','vepromptctr','vecontactCtr','loginctr','insertImagestoDB','basketCrt']);//'ui.bootstrap'
+    var app = angular.module('veoptimazer', ['ngImageInputWithPreview','ui.router','textAngular','ngRoute','ngAnimate','vepromptctr','vecontactCtr','loginctr','insertImagestoDB','basketCrt','homePageCtr']);//'ui.bootstrap'
 
 
     /***************
@@ -119,10 +119,11 @@
       @numItemsMenuBasket is the factory
       @$rootScope will be used for send scope values from different controllers
     *********************/
-    app.controller('navCntr',function($scope,$location,$rootScope,numItemsMenuBasket){
+    app.controller('navCntr',function($scope,$location,$rootScope,$window,numItemsMenuBasket){
+
 
        $scope.numItemBasket = numItemsMenuBasket.getValue();
-      $scope.isActive = function(viewLocation){
+        $scope.isActive = function(viewLocation){
         var active = (viewLocation === $location.path());
         return active;
       }
@@ -162,6 +163,33 @@
               $rootScope.$emit('updateBasket',"onloadFunction");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
         }
       }()
+
+
+      /****************************
+        Display Logout
+      *************************/
+
+       $scope.showlogout = function()
+        {
+          if($window.sessionStorage.clientId)
+          {
+            $scope.logout = true;
+          }
+          else
+          {
+            $scope.logout = false;
+          }
+        }();
+
+    /****************************
+      Logout
+      *************************/
+        $scope.logout = function()
+        {
+          $window.sessionStorage.clear();
+          $window.location= "/";
+        }
+
     });
 
     /*********************
