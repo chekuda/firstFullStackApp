@@ -1,9 +1,10 @@
 
 var express = require('express');
-// var getUsers = require('../services/getUsersfromDB');
+var getUsers = require('../services/getUsersfromDB');
 // var createUser = require('../services/createUser');
 // var deleteUser = require('../services/deleteUser');
 // var storeUser = require('../services/storeUserToDB');
+var updateToken = require('../services/updateToken');
 var login = require('../services/login');
 var bodyParser = require("body-parser");
 var auth = require("../services/authenticationToken");
@@ -19,7 +20,9 @@ listFunctions.post("/login",login.login);//Login function
 
 listFunctions.post("/auth",auth.authentication);//Checking the token
 
-// listFunctions.post('/show', getUsers.getUsersDB);//Get users from DD
+listFunctions.post('/getClient', getUsers.getUsersDB);//Get users from DD
+
+listFunctions.post('/updateToken', updateToken.updateToken);//modify the token after pay
 
 // listFunctions.post('/create', createUser.createUser);//createUser
 
