@@ -17,8 +17,10 @@
           if(data.success)
           {//if client exist I will add the token to the sessionStorage
             console.log(data.token);
+            console.log(data.clientId);
             $window.sessionStorage.token = data.token;
             $window.sessionStorage.admin = data.admin;//saving the admin into the ssessionStore
+            $window.sessionStorage.clientId = data.clientId;//Saving the id for future use
             if(data.admin)
             {
               location.pathname="/uimages";//if the client is master
