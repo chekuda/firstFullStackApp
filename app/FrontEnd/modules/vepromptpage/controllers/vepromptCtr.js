@@ -73,7 +73,7 @@ angular.module('vepromptctr',['colorpicker.module'])
         $http.get("/api/getimg")
         .success(function(data){
             $.each(data, function(key,values){
-              if(data[key].appName == "vePrompt")//only for vePrompt
+              if(data[key].app_name == "vePrompt")//only for vePrompt
               {
                 if(data[key].typeimage == "background")
                 {
@@ -159,7 +159,7 @@ angular.module('vepromptctr',['colorpicker.module'])
         //Loop for save all the matched object by the template selected BgImage
         for(var i=0;i<$scope.arrayImagesBG.length;i++)
         {
-          if($scope.arrayImagesBG[i].template == typeTemplate)
+          if($scope.arrayImagesBG[i].num_template == typeTemplate)
           {
            $scope.arrayTypeTemplateBG.push($scope.arrayImagesBG[i]); 
           }
@@ -167,7 +167,7 @@ angular.module('vepromptctr',['colorpicker.module'])
         //Loop for save all the matched object by the template selected CTAImage
         for(var i=0;i<$scope.arrayImagesCTA.length;i++)
         {
-          if($scope.arrayImagesCTA[i].template == typeTemplate)
+          if($scope.arrayImagesCTA[i].num_template == typeTemplate)
           {
            $scope.arrayTypeTemplateCTA.push($scope.arrayImagesCTA[i]); 
           }
@@ -175,7 +175,7 @@ angular.module('vepromptctr',['colorpicker.module'])
         //Loop for save all the matched object by the template selected CloseImage
          for(var i=0;i<$scope.arrayImagesClose.length;i++)
         {
-          if($scope.arrayImagesClose[i].template == typeTemplate)
+          if($scope.arrayImagesClose[i].num_template == typeTemplate)
           {
            $scope.arrayTypeTemplateClose.push($scope.arrayImagesClose[i]); 
           }
@@ -220,17 +220,17 @@ angular.module('vepromptctr',['colorpicker.module'])
 
         $scope.pickTheImageSource =function(index){//saving the image clicked into the module to display into the preview
           $scope.bgImageSelected=true;
-          return $scope.arrayTypeTemplateBG[index].source;
+          return $scope.arrayTypeTemplateBG[index].url;
         };
 
         $scope.pickTheImageSourceCTA =function(index){//saving the image clicked into the module to display into the preview
           $scope.ctaImageSelected=true;
-          return $scope.arrayTypeTemplateCTA[index].source;
+          return $scope.arrayTypeTemplateCTA[index].url;
         };
 
          $scope.pickTheImageSourceClose =function(index){//saving the image clicked into the module to display into the preview
           $scope.closeImageSelected=true;
-          return $scope.arrayTypeTemplateClose[index].source;
+          return $scope.arrayTypeTemplateClose[index].url;
         };
 
          /******************
@@ -244,8 +244,49 @@ angular.module('vepromptctr',['colorpicker.module'])
           if($scope.bgImageSelected==true && $scope.ctaImageSelected==true && $scope.closeImageSelected==true)//check when the client select all the properties of the template
           {
            $("#successModal").modal("show");
-            //I send the information to the Receive function and this function will save values on the sessionStorage and modify the menuNumberValue
-            $rootScope.$emit('updateBasket',"veprompt");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
+            
+
+             for(var i=0; i<$scope.arrayImagesBG.length;i++)
+              {
+                if($scope.defaulvalues.bgImage == $scope.arrayImagesBG[i].url)
+                {
+                  
+                  var vepromptBG = $scope.arrayImagesBG[i].idtheme_assets;
+                  
+                }
+              }
+              for(var i=0; i<$scope.arrayImagesCTA.length;i++)
+              {
+                if($scope.defaulvalues.ctaImage == $scope.arrayImagesCTA[i].url)
+                {
+                  
+                  var vepromptCTA = $scope.arrayImagesCTA[i].idtheme_assets;
+                  
+                }
+              }
+              for(var i=0; i<$scope.arrayImagesClose.length;i++)
+              {
+                if($scope.defaulvalues.closeImage == $scope.arrayImagesClose[i].url)
+                {
+                  
+                  var vepromptClose = $scope.arrayImagesClose[i].idtheme_assets;
+                  
+                }
+              }
+
+            if(vepromptBG && vepromptCTA && vepromptClose)
+            {
+              //I send the information to the Receive function and this function will save values on the sessionStorage and modify the menuNumberValue
+              $rootScope.$emit('updateBasket',"veprompt");//This funtion will lunch this event and on MainJS the receiver($rootScope.$on) will retrieve the information
+              var vePromptTheme = {"idAssetBG": vepromptBG, "idAssetCTA": vepromptCTA, "idAssetClose": vepromptClose, "text_veprompt": $scope.defaulvalues.defaulText};
+              window.sessionStorage.setItem("vePromptTheme",JSON.stringify(vePromptTheme));
+              
+            }
+            else
+            {
+              console.log(">>>>>>>>>Problem trying to get all the slices");
+            }
+            
           }
           else
           {
