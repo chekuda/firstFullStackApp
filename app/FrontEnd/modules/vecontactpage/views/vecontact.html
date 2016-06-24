@@ -55,10 +55,10 @@
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                       <div class="panel-body">
                         <div ng-repeat="sectors in sectorsAvailable" class="menuSectors">
-                          <a data-target="#SubMenu{{sectors.id}}" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu{{sectors.id}}">{{sectors.sector}} <i class="fa fa-caret-down"></i></a>
-                          <div class="collapse list-group-submenu" id="SubMenu{{sectors.id}}">
+                          <a data-target="#SubMenu{{sectors.idtheme_assets}}" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu{{sectors.idtheme_assets}}">{{sectors.sector}} <i class="fa fa-caret-down"></i></a>
+                          <div class="collapse list-group-submenu" id="SubMenu{{sectors.idtheme_assets}}">
                             <div ng-repeat="themes in arrayImagesBG">
-                                <a href="#" ng-if="themes.sector == sectors.sector" class="list-group-item" data-parent="#SubMenu{{sectors.id}}" ng-click="defaulvalues.contactTheme=pickTheme(themes.id)">{{sectors.sector}} {{themes.id}}</a>
+                                <a href="#" ng-if="themes.sector == sectors.sector" class="list-group-item" data-parent="#SubMenu{{sectors.idtheme_assets}}" ng-click="defaulvalues.contactTheme=pickTheme(themes.idtheme_assets)">{{sectors.sector}} {{themes.idtheme_assets}}</a>
                             </div>
                           </div>
                         </div>
