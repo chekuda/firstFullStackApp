@@ -34,7 +34,7 @@
                       <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                         <div class="panel-body">
                             <div class="arrayImages" ng-repeat="x in arrayTypeTemplateBG" style="display:inline-block;">
-                              <img ng-show="true" ng-src="{{x.source}}" width="150" height="150" ng-click="defaulvalues.bgImage=pickTheImageSource($index)"/>
+                              <img ng-show="true" ng-src="{{x.url}}" width="150" height="150" ng-click="defaulvalues.bgImage=pickTheImageSource($index)"/>
                             </div>
                         </div>
                       </div>
@@ -70,7 +70,7 @@
                       <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
                           <div class="arrayImages" ng-repeat="y in arrayTypeTemplateCTA" style="display:inline-block;">
-                              <img ng-show="true" ng-src="{{y.source}}" width="150" height="44" ng-click="defaulvalues.ctaImage=pickTheImageSourceCTA($index);"/>
+                              <img ng-show="true" ng-src="{{y.url}}" width="150" height="44" ng-click="defaulvalues.ctaImage=pickTheImageSourceCTA($index);"/>
                             </div>
                         </div>
                       </div>
@@ -87,7 +87,7 @@
                       <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                         <div class="panel-body">
                           <div class="arrayImages" ng-repeat="z in arrayTypeTemplateClose" style="display:inline-block;"> 
-                              <img ng-show="true" ng-src="{{z.source}}" width="20" height="20" ng-click="defaulvalues.closeImage=pickTheImageSourceClose($index); buttonDisabled()"/>
+                              <img ng-show="true" ng-src="{{z.url}}" width="20" height="20" ng-click="defaulvalues.closeImage=pickTheImageSourceClose($index); buttonDisabled()"/>
                             </div>
                         </div>
                       </div>
