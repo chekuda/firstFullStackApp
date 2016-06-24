@@ -1,4 +1,22 @@
 <div ng-include='"mainPage/views/header.html"'></div>
-<div ng-controller"formLogin">
-	Hello {{credentials.username}}
+<div ng-controller="homeCtr" class="container-fluid">
+
+	<div id="mainLogin" >
+		<!--Token part-->
+		<div id="tokenReminded">
+			<div class="panel panel-default">
+			  <div class="panel-heading">Token Reminded</div>
+			  <div class="panel-body numToken">{{totalToken}}</div>
+			</div>
+		</div>
+		<!--History part-->
+		<div id="history">
+			<div class="panel panel-default">
+			  <div class="panel-heading">History</div>
+			  <div class="panel-body">Panel Content</div>
+			</div>
+		</div>
+	</div>
+	
+
 </div>
