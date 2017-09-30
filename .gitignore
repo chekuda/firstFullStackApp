@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/app/BackEnd/node_modules
 
 # testing
 /coverage
